@@ -4,7 +4,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-light accordion shadow-lg" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="<?= base_url('admin') ?>" style="background-color:#D4A550 ;">
@@ -158,6 +158,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
 
+
                     <!-- /.container-fluid -->
 
                 </div>
@@ -197,7 +198,7 @@
                     <div class="modal-body">Klik "Logout" dibawah ini jika anda yakin ingin logout.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="<?= base_url('auth/logout') ?>">Logout</a>
+                        <a class="btn btn-primary" href="<?= base_url('HalamanLogin/logout') ?>">Logout</a>
                     </div>
                 </div>
             </div>

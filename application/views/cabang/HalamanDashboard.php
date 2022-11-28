@@ -22,6 +22,7 @@
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span></a>
+
             </li>
 
 
@@ -151,7 +152,7 @@
                     <div class="modal-body">Klik "Logout" dibawah ini jika anda yakin ingin logout.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="<?= base_url('auth/logout') ?>">Logout</a>
+                        <a class="btn btn-primary" href="<?= base_url('HalamanLogin/logout') ?>">Logout</a>
                     </div>
                 </div>
             </div>
