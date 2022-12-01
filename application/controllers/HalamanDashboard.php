@@ -13,20 +13,19 @@ class HalamanDashboard extends CI_Controller
     {
         $data['title'] = "Dashboard";
         $data['user'] = $this->User->muatSemuaUser($this->session->userdata('username'));
-        $this->template->load('admin/HalamanDashboard', 'admin/dashboard', $data);
+        $this->template->load('admin/HalamanDashboard', 'dashboard', $data);
     }
 
     public function cabang()
     {
         $data['title'] = "Dashboard";
         $data['user'] = $this->User->muatSemuaUser($this->session->userdata('username'));
-
-        $this->load->view('cabang/HalamanDashboard', $data);
+        $this->template->load('cabang/HalamanDashboard', 'dashboard', $data);
     }
     public function owner()
     {
         $data['title'] = "Dashboard";
         $data['user'] = $this->User->muatSemuaUser($this->session->userdata('username'));
-        $this->load->view('owner/HalamanDashboard', $data);
+        $this->template->load('owner/HalamanDashboard', 'dashboard', $data);
     }
 }

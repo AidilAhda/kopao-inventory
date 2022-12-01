@@ -13,7 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <!-- Custom fonts for this template-->
-    <link rel="icon" type="image/png" href="assets/img/logo-kopao2.png" />
+    <link rel="icon" type="image/png" href="<?= base_url('assets/') ?>img/logo-kopao2.png" />
     <link href="<?= base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
@@ -30,10 +30,10 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-light accordion shadow-sm " id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="<?= base_url('admin') ?>" style="background-color:#D4A550 ;">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="<?= base_url('HalamanDashboard/owner') ?>" style="background-color:#D4A550 ;">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i aria-hidden="true"><img src="<?= base_url('assets/') ?>img/logo-kopao2.png" width=" 50"></i>
                     </div>
@@ -45,7 +45,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="<?= base_url('HalamanDashboard/owner') ?>">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span></a>
                 </li>
@@ -126,6 +126,7 @@
 
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>
+                        <?= $contents ?>
 
                         <!-- /.container-fluid -->
 
