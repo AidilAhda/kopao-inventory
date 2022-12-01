@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class System extends CI_Controller
+class Sistem extends CI_Controller
 {
     public function __construct()
     {
@@ -40,10 +40,10 @@ class System extends CI_Controller
             $query =  $this->User->tambahUser($data);
             if ($query) {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Tambah Akun</div>');
-                redirect('HalamanLogin');
+                redirect('HalamanLogin/tampilHalamanLogin');
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Tambah Akun</div>');
-                redirect('HalamanLogin/tambahUser');
+                redirect('Sistem/tambahUser');
             }
         }
     }
