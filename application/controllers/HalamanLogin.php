@@ -33,7 +33,7 @@ class HalamanLogin extends CI_Controller
         $password = $this->input->post('password');
 
         // $user = $this->db->get_where('user', ['username' => $username])->row_array();
-        $user_db = $this->User->muatSemuaUser($input['username']);
+        $user_db = $this->User->cek($input['username']);
 
 
         //jika usernya ada
@@ -57,17 +57,17 @@ class HalamanLogin extends CI_Controller
                     }
                 } else {
 
-                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">password salah</div>');
+
+                    $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Password Anda Salah<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                     redirect('HalamanLogin/tampilHalamanLogin');
                 }
             } else {
                 //jika tidak aktif
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">akun anda belum aktif/dinonaktifkan. Silahkan hubungi admin.</div>');
                 redirect('HalamanLogin/tampilHalamanLogin');
             }
         } else {
             //jika tidak ada
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">username belum terdaftar</div>');
+            $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>username belum terdaftar <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             redirect('HalamanLogin/tampilHalamanLogin');
         }
     }
@@ -77,7 +77,7 @@ class HalamanLogin extends CI_Controller
     {
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('role_id');
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Telah berhasil log out</div>');
+        $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Telah berhasil log out <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         redirect('HalamanLogin/tampilHalamanLogin');
     }
 }

@@ -21,6 +21,12 @@
 
     <script src="https://kit.fontawesome.com/0427cee4dc.js" crossorigin="anonymous"></script>
 </head>
+<style>
+    #accordionSidebar,
+    .topbar {
+        z-index: 1;
+    }
+</style>
 
 <body>
 

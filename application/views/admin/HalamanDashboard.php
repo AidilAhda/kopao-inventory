@@ -19,7 +19,19 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- DataTables -->
+    <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/datatables/buttons/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/datatables/responsive/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/gijgo/css/gijgo.min.css" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/0427cee4dc.js" crossorigin="anonymous"></script>
+    <style>
+        #accordionSidebar,
+        .topbar {
+            z-index: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -235,6 +247,44 @@
 
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
+
+            <!-- Page level plugins -->
+            <script src="<?= base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/dataTables.buttons.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.bootstrap4.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/jszip/jszip.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/pdfmake/pdfmake.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/pdfmake/vfs_fonts.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.html5.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.print.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.colVis.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/dataTables.responsive.min.js"></script>
+            <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
+
+            <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var table = $('#dataTable').DataTable({
+                        buttons: ['copy', 'csv', 'print', 'excel', 'pdf'],
+                        dom: "<'row px-2 px-md-4 pt-2'<'col-md-3'l><'col-md-5 text-center'B><'col-md-4'f>>" +
+                            "<'row'<'col-md-12'tr>>" +
+                            "<'row px-2 px-md-4 py-3'<'col-md-5'i><'col-md-7'p>>",
+                        lengthMenu: [
+                            [5, 10, 25, 50, 100, -1],
+                            [5, 10, 25, 50, 100, "All"]
+                        ],
+                        columnDefs: [{
+                            targets: -1,
+                            orderable: false,
+                            searchable: false
+                        }]
+                    });
+
+                    table.buttons().container().appendTo('#dataTable_wrapper .col-md-5:eq(0)');
+                });
+            </script>
 
     </body>
 

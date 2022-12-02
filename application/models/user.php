@@ -13,7 +13,7 @@ class user extends CI_Model
         $data = $this->db->get_where('user', ['username' => $username])->row_array();
         return $data['password'];
     }
-    public function muatSemuaUser($username)
+    public function cek($username)
     {
         return $this->db->get_where('user', ['username' => $username])->row_array();
     }

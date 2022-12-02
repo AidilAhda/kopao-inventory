@@ -8,11 +8,14 @@ class HalamanKategori extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('user', 'User');
+        $this->load->model('Kategori', 'kategori');
     }
     public function index()
     {
-        $data['title'] = 'Kategori Barang';
-        $data['user'] = $this->User->muatSemuaUser($this->session->userdata('username'));
+        $data['title'] = 'Kategori';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['kategori'] = $this->kategori->muatSemuaKategori();
+
         $this->template->load('admin/HalamanDashboard', 'admin/kategori/HalamanKategori', $data);
     }
 }
