@@ -1,3 +1,4 @@
+<?= $this->session->flashdata('pesan'); ?>
 <div class="card shadow-sm border-bottom-primary">
     <div class="card-header bg-white py-3">
         <div class="row">
@@ -37,8 +38,8 @@
                             <td><?= $no++; ?></td>
                             <td><?= $k['nama_kategori']; ?></td>
                             <td>
-                                <a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin hapus?')" href="#" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('HalamanUbahKategori/edit/') . $k['id_kategori'] ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('HalamanKategori/hapusData/') . $k['id_kategori'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
