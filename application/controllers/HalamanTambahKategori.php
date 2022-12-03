@@ -9,6 +9,12 @@ class HalamanTambahKategori extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('user', 'User');
         $this->load->model('Kategori', 'kategori');
+
+        //cek apakah belum login tapi sudah masuk melalui url
+        is_logged_in();
+
+        // cek siapa yang login dan ingin masuk ke page admin
+        isAdmin();
     }
 
     public function index()

@@ -10,6 +10,7 @@ class HalamanLogin extends CI_Controller
         $this->load->model('user', 'User');
     }
 
+
     public function tampilHalamanLogin()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required');

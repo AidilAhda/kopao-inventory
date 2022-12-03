@@ -8,6 +8,9 @@ class HalamanDashboard extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('user', 'User');
+
+        //cek apakah belum login tapi sudah masuk melalui url
+        is_logged_in();
     }
     public function admin()
     {
