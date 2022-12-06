@@ -32,7 +32,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-9 offset-md-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
                         </div>
                     </div>

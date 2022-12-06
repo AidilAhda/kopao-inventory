@@ -1,4 +1,3 @@
-<?php error_reporting(0); ?>
 <?= $this->session->flashdata('pesan'); ?>
 <div class="card shadow-sm border-bottom-primary">
     <div class="card-header bg-white py-3">
