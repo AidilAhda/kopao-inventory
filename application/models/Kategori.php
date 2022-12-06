@@ -11,21 +11,21 @@ class Kategori extends CI_Model
     {
         return $this->db->insert('kategori', $data);
     }
-    public function getData($table, $data = null, $where = null)
+    public function muatData($id)
     {
-        if ($data != null) {
-            return $this->db->get_where($table, $data)->row_array();
+        if ($id != null) {
+            return $this->db->get_where('kategori', ['id_kategori' => $id])->row_array();
         } else {
-            return $this->db->get_where($table, $where)->result_array();
+            return $this->db->get_where('kategori', ['id_kategori' => $id])->result_array();
         }
     }
-    public function updateData($table, $pk, $id, $data)
+    public function updateData($id, $data)
     {
-        $this->db->where($pk, $id);
-        return $this->db->update($table, $data);
+        $this->db->where('id_kategori', $id);
+        return $this->db->update('kategori', $data);
     }
-    public function hapusData($table, $pk, $id)
+    public function hapusData($id)
     {
-        return $this->db->delete($table, [$pk => $id]);
+        return $this->db->delete('kategori', ['id_kategori' => $id]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class HalamanKategori extends CI_Controller
+class HalamanDataBarang extends CI_Controller
 {
     public function __construct()
     {
@@ -9,6 +9,7 @@ class HalamanKategori extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('user', 'User');
         $this->load->model('Kategori', 'kategori');
+        $this->load->model('Barang', 'barang');
 
         //cek apakah belum login tapi sudah masuk melalui url
         is_logged_in();
@@ -17,18 +18,11 @@ class HalamanKategori extends CI_Controller
     }
     public function index()
     {
-        $data['title'] = 'Kategori';
+        $data['title'] = 'Data Barang';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
+        $data['barang'] = $this->barang->muatSemuaDataBarang();
 
-        $this->template->load('admin/HalamanDashboard', 'admin/kategori/HalamanKategori', $data);
-    }
-    public function hapusData($getId)
-    {
-        $id = encode_php_tags($getId);
-        if ($this->kategori->hapusData($id)) {
-            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus kategori<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-        }
-        redirect('HalamanKategori');
+        $this->template->load('admin/HalamanDashboard', 'admin/databarang/HalamanDataBarang', $data);
     }
 }

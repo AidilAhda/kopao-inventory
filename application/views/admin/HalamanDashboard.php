@@ -80,7 +80,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             <a class="collapse-item" href="<?= base_url('halamankategori') ?>">Kategori</a>
-                            <a class="collapse-item" href="cards.html">Data Barang</a>
+                            <a class="collapse-item" href="<?= base_url('halamandatabarang') ?>">Data Barang</a>
                         </div>
                     </div>
                 </li>
