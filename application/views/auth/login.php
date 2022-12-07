@@ -17,7 +17,7 @@
                                     <h1 class="h4 text-gray-900"><img src="<?php echo base_url('assets/img/logo-kopao2.png') ?>" width="35px">Inventory</h1>
                                     <span class="text-muted">Login</span>
                                 </div>
-                                <form class="user" method="post" action="<?= base_url('HalamanLogin/tampilHalamanLogin'); ?>">
+                                <form class="user" method="post" action="<?= base_url('Sistem/tampilHalamanLogin'); ?>">
                                     <div class="form-group">
                                         <input autofocus="autofocus" autocomplete="off" type="text" name="username" class="form-control form-control-user" placeholder="Username" value="<?= set_value('username') ?>">
                                         <?= form_error('username', '<small class="text-danger">', '</small>'); ?>

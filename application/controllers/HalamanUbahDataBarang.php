@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class HalamanTambahDataBarang extends CI_Controller
+class HalamanUbahDataBarang extends CI_Controller
 {
     public function __construct()
     {
@@ -16,19 +16,18 @@ class HalamanTambahDataBarang extends CI_Controller
         // cek siapa yang login dan ingin masuk ke page admin
         isAdmin();
     }
-    public function index()
+    public function edit($getId)
     {
         $data['title'] = 'Data Barang';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $lastKode = $this->barang->idBarangTerbesar();
 
-        //mengambail 6 char dari belakang
-        $noUrut = (int) substr($lastKode, -6, 6);
-        $noUrut++;
-        $newKode = 'B' . sprintf("%06s", $noUrut);
 
+        $id = encode_php_tags($getId);
+        $data['title'] = "Data Barang";
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
-        $data['idBarang'] = $newKode;
-        $this->template->load('admin/HalamanDashboard', 'admin/databarang/HalamanTambahDataBarang', $data);
+        $data['barang'] = $this->barang->muatDataBarang($id);
+        $this->template->load('admin/HalamanDashboard', 'admin/databarang/HalamanUbahBarang', $data);
     }
 }

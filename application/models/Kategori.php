@@ -5,13 +5,14 @@ class Kategori extends CI_Model
 {
     public function muatSemuaKategori()
     {
+
         return $this->db->get('kategori')->result_array();
     }
     public function simpanData($data)
     {
         return $this->db->insert('kategori', $data);
     }
-    public function muatData($id)
+    public function muatKategori($id)
     {
         if ($id != null) {
             return $this->db->get_where('kategori', ['id_kategori' => $id])->row_array();
