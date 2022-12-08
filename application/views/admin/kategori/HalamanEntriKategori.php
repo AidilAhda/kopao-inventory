@@ -22,11 +22,11 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/updateKategori/') . $kategori['id_kategori']   ?>">
+                <form class="user" method="post" action="<?= base_url('Sistem/tambahKategori') ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama_kategori">Nama Kategori</label>
                         <div class="col-md-9">
-                            <input value="<?= set_value('nama_kategori', $kategori['nama_kategori']); ?>" name="nama_kategori" id="nama_kategori" type="text" class="form-control" placeholder="Nama kategori...">
+                            <input value="<?= set_value('nama_kategori'); ?>" name="nama_kategori" id="nama_kategori" type="text" class="form-control" placeholder="Nama Kategori...">
                             <?= form_error('nama_kategori', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
@@ -37,6 +37,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

@@ -80,7 +80,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
 
                             <a class="collapse-item" href="<?= base_url('halamankategori') ?>">Kategori</a>
-                            <a class="collapse-item" href="<?= base_url('halamandatabarang') ?>">Data Barang</a>
+                            <a class="collapse-item" href="<?= base_url('HalamanBarang') ?>">Data Barang</a>
                         </div>
                     </div>
                 </li>
@@ -96,8 +96,8 @@
                 </div>
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
-                    <a class="nav-link pb-0" href="charts.html">
-                        <i class="fas fa-folder-open"></i>
+                    <a class="nav-link pb-0" href="<?= base_url('halamancabang') ?>">
+                        <i class=" fas fa-folder-open"></i>
                         <span>Data Cabang</span></a>
                     </a>
                 </li>

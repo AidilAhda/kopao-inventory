@@ -9,7 +9,7 @@
                         </h4>
                     </div>
                     <div class="col-auto">
-                        <a href="<?= base_url('HalamanKategori') ?>" class="btn btn-sm btn-secondary btn-icon-split">
+                        <a href="<?= base_url('HalamanCabang') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
                             </span>
@@ -22,12 +22,19 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/tambahDataKategori') ?>">
+                <form class="user" method="post" action="<?= base_url('Sistem/tambahCabang') ?>">
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="nama_kategori">Nama Kategori</label>
+                        <label class="col-md-3 text-md-right" for="nama_cabang">Nama Cabang</label>
                         <div class="col-md-9">
-                            <input value="<?= set_value('nama_kategori'); ?>" name="nama_kategori" id="nama_kategori" type="text" class="form-control" placeholder="Nama Kategori...">
-                            <?= form_error('nama_kategori', '<small class="text-danger">', '</small>'); ?>
+                            <input value="<?= set_value('nama_cabang'); ?>" name="nama_cabang" id="nama_cabang" type="text" class="form-control" placeholder="Nama Cabang...">
+                            <?= form_error('nama_cabang', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="alamat_cabang">Alamat</label>
+                        <div class="col-md-9">
+                            <textarea value="<?= set_value('alamat_cabang'); ?>" name="alamat_cabang" id="alamat_cabang" type="text" class="form-control" placeholder="Alamat..."></textarea>
+                            <?= form_error('alamat_cabang', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="row form-group">

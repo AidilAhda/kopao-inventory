@@ -3,35 +3,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Barang extends CI_Model
 {
-    public function muatSemuaDataBarang()
+    public function muatSemuaBarang()
     {
         $this->db->join('kategori k', 'db.kategori_id = k.id_kategori');
-        return $this->db->get('databarang db')->result_array();
+        return $this->db->get('barang db')->result_array();
     }
     public function idBarangTerbesar()
     {
         $this->db->select_max('id_barang');
-        return $this->db->get('databarang')->row_array()['id_barang'];
+        return $this->db->get('barang')->row_array()['id_barang'];
     }
-    public function simpanDataBarang($data)
+    public function simpanBarang($data)
     {
-        return $this->db->insert('databarang', $data);
+        return $this->db->insert('barang', $data);
     }
-    public function muatDataBarang($id)
+    public function muatBarang($id)
     {
         if ($id != null) {
-            return $this->db->get_where('databarang', ['id_barang' => $id])->row_array();
+            return $this->db->get_where('barang', ['id_barang' => $id])->row_array();
         } else {
-            return $this->db->get_where('databarang', ['id_barang' => $id])->result_array();
+            return $this->db->get_where('barang', ['id_barang' => $id])->result_array();
         }
     }
-    public function updateDataBarang($id, $data)
+    public function updateBarang($id, $data)
     {
         $this->db->where('id_barang', $id);
-        return $this->db->update('databarang', $data);
+        return $this->db->update('barang', $data);
     }
-    public function hapusDataBarang($id)
+    public function hapusBarang($id)
     {
-        return $this->db->delete('databarang', ['id_barang' => $id]);
+        return $this->db->delete('barang', ['id_barang' => $id]);
     }
 }
