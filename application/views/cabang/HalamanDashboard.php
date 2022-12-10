@@ -65,6 +65,12 @@
                 </div>
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
+                    <a class="nav-link pb-0" href="<?= base_url('HalamanPesanan') ?>">
+                        <i class="fas fa-cart-plus"></i>
+                        <span>Pesan Barang</span></a>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link pb-0" href="charts.html">
                         <i class="fas fa-fw fa-download"></i>
                         <span>Barang Masuk</span></a>
@@ -77,12 +83,7 @@
                         <span>Barang Keluar</span></a>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link pb-0" href="tables.html">
-                        <i class="fas fa-cart-plus"></i>
-                        <span>Pesan Barang</span></a>
-                    </a>
-                </li>
+
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 

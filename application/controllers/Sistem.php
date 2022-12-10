@@ -12,6 +12,7 @@ class Sistem extends CI_Controller
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
         $this->load->model('Cabang', 'cabang');
+        $this->load->model('Pesanan', 'pesanan');
     }
 
     // LOGIN
@@ -50,7 +51,8 @@ class Sistem extends CI_Controller
                 if (password_verify($password, $user_db['password'])) {
                     $data = [
                         'username' => $user_db['username'],
-                        'role_id' => $user_db['role_id']
+                        'role_id' => $user_db['role_id'],
+                        'nama' => $user_db['nama']
                     ];
                     $this->session->set_userdata($data);
                     if ($user_db['role_id'] == 1) {
@@ -242,7 +244,7 @@ class Sistem extends CI_Controller
         }
     }
 
-    public function tambahCabang()
+    public function simpanCabang()
     {
         $data['title'] = 'Data Cabang ';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
@@ -268,6 +270,66 @@ class Sistem extends CI_Controller
             } else {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanEntriKategori');
+            }
+        }
+    }
+
+    public function hapusCabang($getId)
+    {
+        $id = encode_php_tags($getId);
+        if ($this->cabang->hapusCabang($id)) {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        }
+        redirect('HalamanCabang');
+    }
+
+
+    // MENU PESANAN
+    public function simpanPesanan()
+    {
+        $data['title'] = 'Pesanan';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+        $this->form_validation->set_rules('id_kategori', 'Kategori ', 'required');
+        $this->form_validation->set_rules('satuan', 'Satuan', 'required');
+
+        $today = date('ymd');
+        $prefix = 'PC' . $today;
+        $lastKode = $this->pesanan->idPesananTerbesar();
+
+
+        //mengambail 4 char dari belakang
+        $noUrut = (int) substr($lastKode, -4, 4);
+        $noUrut++;
+        $newKode = $prefix . sprintf("%04s", $noUrut);
+
+
+        $data['kategori'] = $this->kategori->muatSemuaKategori();
+        $data['barang'] = $this->barang->muatSemuaBarang();
+        $data['idPesanan'] = $newKode;
+        if ($this->form_validation->run() == false) {
+            $this->template->load('cabang/HalamanDashboard', 'cabang/pesanan/HalamanEntriPesanan', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $data = [
+                'id_pesanan ' => $input['id_pesanan'],
+                'satuan ' => $input['satuan'],
+                'kategori_id ' => $input['id_kategori'],
+                'jumlah_barang' => $input['jumlah'],
+                'tanggal_pesanan' => $input['tanggal'],
+                'nama_cabang' => $input['nama_cabang'],
+                'status' => 'Pending',
+                'barang_id' => $input['nama_barang']
+            ];
+            $query =  $this->pesanan->simpanPesanan($data);
+            if ($query) {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah Pesanan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanPesanan');
+            } else {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah Pesanan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanEntriPesanan');
             }
         }
     }

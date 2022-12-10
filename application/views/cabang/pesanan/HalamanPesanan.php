@@ -4,50 +4,60 @@
         <div class="row">
             <div class="col">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Data Cabang
+                    Pesanan
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('HalamanEntriCabang') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="<?= base_url('HalamanEntriPesanan') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
                     <span class="text">
-                        Tambah Cabang
+                        Tambah Pesanan
                     </span>
                 </a>
             </div>
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped " id="dataTable">
+        <table class="table table-striped w-100 dt-responsive " id="dataTable">
             <thead>
                 <tr>
-                    <th>No. </th>
+                    <th>ID </th>
+                    <th>Tanggal</th>
                     <th>Nama Cabang</th>
-                    <th>Alamat</th>
-                    <th>Aksi</th>
+                    <th>Barang</th>
+                    <th>Kategori Barang</th>
+                    <th>Jumlah</th>
+                    <th>Satuan</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $no = 1;
-                if ($cabang) :
-                    foreach ($cabang as $c) :
+
+
+                if ($pesanan) :
+                    foreach ($pesanan as $p) :
                 ?>
                         <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $c['nama_cabang']; ?></td>
-                            <td><?= $c['alamat_cabang']; ?></td>
-                            <td>
-                                <a href="<?= base_url('HalamanUbahCabang/edit/') . $c['id_cabang'] ?> " class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Sistem/hapusCabang/') . $c['id_cabang'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+
+                            <td><?= $p['id_pesanan']; ?></td>
                             </td>
+                            <td><?= $p['tanggal_pesanan']; ?></td>
+                            <td><?= $p['nama_cabang']; ?></td>
+                            <td><?= $p['nama_barang']; ?></td>
+                            <td><?= $p['nama_kategori']; ?></td>
+                            <td><?= $p['jumlah_barang']; ?></td>
+                            <td><?= $p['satuan']; ?></td>
+                            <td><?= $p['status']; ?></td>
+
                         </tr>
+
                     <?php endforeach; ?>
                 <?php else : ?>
                     <tr>
-                        <td colspan="3" class="text-center">
+                        <td colspan="7" class="text-center">
                             Data Kosong
                         </td>
                     </tr>

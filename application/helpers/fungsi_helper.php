@@ -13,9 +13,33 @@ function isAdmin()
     $role = $ci->session->userdata('role_id');
 
     if ($role == 2) {
-        redirect('HalamanDashboard/cabang');
+        redirect('HalamanDashboard/blok');
     }
     if ($role == 3) {
-        redirect('HalamanDashboard/owner');
+        redirect('HalamanDashboard/blok');
+    }
+}
+function isCabang()
+{
+    $ci = get_instance();
+    $role = $ci->session->userdata('role_id');
+
+    if ($role == 1) {
+        redirect('HalamanDashboard/blok');
+    }
+    if ($role == 3) {
+        redirect('HalamanDashboard/blok');
+    }
+}
+function isOwner()
+{
+    $ci = get_instance();
+    $role = $ci->session->userdata('role_id');
+
+    if ($role == 1) {
+        redirect('HalamanDashboard/blok');
+    }
+    if ($role == 2) {
+        redirect('HalamanDashboard/blok');
     }
 }

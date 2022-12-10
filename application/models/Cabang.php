@@ -30,4 +30,8 @@ class Cabang extends CI_Model
     {
         return $this->db->insert('cabang', $data);
     }
+    public function hapusCabang($id)
+    {
+        return $this->db->delete('cabang', ['id_cabang' => $id]);
+    }
 }

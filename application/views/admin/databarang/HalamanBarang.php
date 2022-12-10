@@ -26,7 +26,7 @@
                     <th>No. </th>
                     <th>ID Barang</th>
                     <th>Nama Barang</th>
-                    <th>Jenis Barang</th>
+                    <th>Kategori Barang</th>
                     <th>Satuan</th>
                     <th>Aksi</th>
                 </tr>

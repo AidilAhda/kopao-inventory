@@ -9,7 +9,7 @@
                         </h4>
                     </div>
                     <div class="col-auto">
-                        <a href="<?= base_url('HalamanBarang') ?>" class="btn btn-sm btn-secondary btn-icon-split">
+                        <a href="<?= base_url('HalamanPesanan') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
                             </span>
@@ -22,24 +22,54 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/tambahBarang') ?>">
+                <form class="user" method="post" action="<?= base_url('Sistem/simpanPesanan') ?>">
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="id_barang">ID Barang</label>
+                        <label class="col-md-3 text-md-right" for="id_pesanan">ID Pesanan</label>
                         <div class="col-md-9">
-                            <input readonly value="<?= set_value('id_barang', $idBarang); ?>" name="id_barang" id="id_barang" type="text" class="form-control" placeholder="ID Barang...">
-                            <?= form_error('id_barang', '<small class="text-danger">', '</small>'); ?>
+                            <input readonly value="<?= set_value('id_pesanan', $idPesanan); ?>" name="id_pesanan" id="id_pesanan" type="text" class="form-control" placeholder="ID Barang...">
+                            <?= form_error('id_pesanan', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
 
                     <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="nama_cabang">Nama Cabang</label>
+                        <div class="col-md-9">
+                            <input readonly value="<?= set_value('nama_cabang', $user['nama']); ?>" name="nama_cabang" id="nama_cabang" type="text" class="form-control" placeholder="Nama Barang...">
+                            <?= form_error('nama_cabang', '<small class="text-danger">', '</small>'); ?>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="tanggal">Tanggal</label>
+                        <div class="col-md-9">
+                            <input value="<?= set_value('tanggal'); ?>" name="tanggal" id="tanggal" type="date" class="form-control" placeholder="tanggal...">
+                            <?= form_error('tanggal', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama_barang">Nama Barang</label>
                         <div class="col-md-9">
-                            <input value="<?= set_value('nama_barang'); ?>" name="nama_barang" id="nama_barang" type="text" class="form-control" placeholder="Nama Barang...">
+                            <div class="input-group">
+                                <select name="nama_barang" id="nama_barang" class="custom-select">
+                                    <option value="" selected disabled>Pilih Nama Barang</option>
+                                    <?php foreach ($barang as $b) : ?>
+                                        <option <?= set_select('nama_barang', $b['nama_barang']) ?> value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                            </div>
                             <?= form_error('nama_barang', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="id_kategori">Jenis Barang</label>
+                        <label class="col-md-3 text-md-right" for="jumlah">jumlah</label>
+                        <div class="col-md-9">
+                            <input value="<?= set_value('jumlah'); ?>" name="jumlah" id="jumlah" type="number" class="form-control" placeholder="Jumlah...">
+                            <?= form_error('jumlah', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="id_kategori">Kategori Barang</label>
                         <div class="col-md-9">
                             <div class="input-group">
                                 <select name="id_kategori" id="id_kategori" class="custom-select">
@@ -48,13 +78,12 @@
                                         <option <?= set_select('id_kategori', $k['id_kategori']) ?> value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <div class="input-group-append">
-                                    <a class="btn btn-primary" href="<?= base_url('HalamanEntriKategori'); ?>"><i class="fa fa-plus"></i></a>
-                                </div>
+
                             </div>
                             <?= form_error('id_kategori', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
+
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="satuan">Satuan Barang</label>
                         <div class="col-md-9">
