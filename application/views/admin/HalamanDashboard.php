@@ -128,7 +128,7 @@
                 </div>
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
-                    <a class="nav-link pb-0" href="charts.html">
+                    <a class="nav-link pb-0" href="<?= base_url('HalamanPengelolaanUser') ?>">
                         <i class="fas fa-fw fa-user-plus"></i>
                         <span>Pengelolaan User</span></a>
                     </a>
@@ -168,7 +168,7 @@
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="<?= base_url('HalamanProfile/admin') ?>">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>
@@ -260,8 +260,38 @@
             <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
 
             <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
-
             <script type="text/javascript">
+                $(function() {
+                    $('.date').datepicker({
+                        uiLibrary: 'bootstrap4',
+                        format: 'yyyy-mm-dd'
+                    });
+
+                    var start = moment().subtract(29, 'days');
+                    var end = moment();
+
+                    function cb(start, end) {
+                        $('#tangal').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+                    }
+
+                    $('#tanggal').daterangepicker({
+                        startDate: start,
+                        endDate: end,
+                        ranges: {
+                            'Hari ini': [moment(), moment()],
+                            'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            '7 hari terakhir': [moment().subtract(6, 'days'), moment()],
+                            '30 hari terakhir': [moment().subtract(29, 'days'), moment()],
+                            'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+                            'Bulan lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                            'Tahun ini': [moment().startOf('year'), moment().endOf('year')],
+                            'Tahun lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+                        }
+                    }, cb);
+
+                    cb(start, end);
+                });
+
                 $(document).ready(function() {
                     var table = $('#dataTable').DataTable({
                         buttons: ['copy', 'csv', 'print', 'excel', 'pdf'],

@@ -70,6 +70,7 @@ class Sistem extends CI_Controller
                 }
             } else {
                 //jika tidak aktif
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Akun anda belum aktif. Silahkan hubungi admin untuk mengaktifkan akun<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanLogin');
             }
         } else {
@@ -128,6 +129,7 @@ class Sistem extends CI_Controller
             }
         }
     }
+
 
     public function hapusKategori($getId)
     {
@@ -260,7 +262,7 @@ class Sistem extends CI_Controller
             $input = $this->input->post(null, true);
             $data = [
                 'id_cabang' => $idTerbesar,
-                'nama_cabang' => $input['nama_cabang'],
+                'nama_cabang' => strtoupper($input['nama_cabang']),
                 'alamat_cabang' => $input['alamat_cabang']
             ];
             $query =  $this->cabang->simpanCabang($data);
@@ -372,41 +374,67 @@ class Sistem extends CI_Controller
 
 
 
-    public function tambahUser()
+    // MENU KELOLA USER
+    public function simpanUser()
     {
+        //jika gagal
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]|alpha_numeric');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]', [
             'min_length' => 'password terlalu pendek'
         ]);
-        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('nama', 'Name', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|trim');
-        //jika gagal
         if ($this->form_validation->run() == false) {
+
             $data['title'] = 'Tambah User';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/register');
-            $this->load->view('templates/auth_footer');
+            $data['user'] = $this->User->cek($this->session->userdata('username'));
+            $this->template->load('admin/HalamanDashboard', 'admin/kelolaakun/HalamanEntriUser', $data);
         } else {
             $input = $this->input->post(null, true);
             $data = [
-                'nama' => $input['name'],
+                'nama' => strtoupper($input['nama']),
                 'username' => $input['username'],
                 'email' => $input['email'],
                 'no_telp' => $input['no_telp'],
                 'role_id' => 2,
                 'password' => password_hash($input['password'], PASSWORD_DEFAULT),
                 'created_at' => time(),
-                'is_active' => 1
+                'is_active' => 0
             ];
-            $query =  $this->User->tambahUser($data);
+            $query =  $this->User->simpanUser($data);
             if ($query) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Tambah Akun</div>');
-                redirect('HalamanLogin/tampilHalamanLogin');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Tambah User</div>');
+                redirect('HalamanPengelolaanUser');
             } else {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Tambah Akun</div>');
-                redirect('Sistem/tambahUser');
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Tambah User</div>');
+                redirect('HalamanEntriUser');
             }
         }
+    }
+
+    public function aktifkanUser($getId)
+    {
+        $id = encode_php_tags($getId);
+        $status = $this->User->muatUser($id)['is_active'];
+        $toggle = $status ? 0 : 1; //Jika user aktif maka nonaktifkan, begitu pula sebaliknya
+        $pesan = $toggle ? 'user diaktifkan.' : 'user dinonaktifkan.';
+        $query = $this->User->aktivasiUser('user', 'id_user', $id, ['is_active' => $toggle]);
+        if ($query) {
+            if ($pesan == 1) {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil diaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            }
+            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil dinonaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        }
+        redirect('HalamanPengelolaanUser');
+    }
+
+    public function hapusUser($getId)
+    {
+        $id = encode_php_tags($getId);
+        if ($this->User->hapusUser($id)) {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+        }
+        redirect('HalamanPengelolaanUser');
     }
 }
