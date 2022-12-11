@@ -334,6 +334,42 @@ class Sistem extends CI_Controller
         }
     }
 
+    public function konfirmasiPesanan($getId)
+    {
+        $id = encode_php_tags($getId);
+
+        $data = [
+            'status' => 'Disetujui'
+        ];
+        $query = $this->pesanan->updatePesanan($id, $data);
+        if ($query) {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            redirect('HalamanKonfirmasiPesanan');
+        } else {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+
+            redirect('HalamanKonfirmasiPesanan');
+        }
+    }
+    public function tolakPesanan($getId)
+    {
+        $id = encode_php_tags($getId);
+
+        $data = [
+            'status' => 'Ditolak'
+        ];
+        $query = $this->pesanan->updatePesanan($id, $data);
+        if ($query) {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            redirect('HalamanKonfirmasiPesanan');
+        } else {
+            $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+
+            redirect('HalamanKonfirmasiPesanan');
+        }
+    }
+
+
 
 
     public function tambahUser()
