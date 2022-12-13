@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class HalamanPesanan extends CI_Controller
+class HalamanBarangKeluar extends CI_Controller
 {
     public function __construct()
     {
@@ -11,7 +11,7 @@ class HalamanPesanan extends CI_Controller
 
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
-        $this->load->model('Pesanan', 'pesanan');
+        $this->load->model('StokCabang', 'sc');
 
         //cek apakah belum login tapi sudah masuk melalui url
         is_logged_in();
@@ -20,13 +20,16 @@ class HalamanPesanan extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Pesanan';
+        $data['title'] = 'Barang Keluar';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
+
+
+
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
-
         $user_db = $this->User->cek($this->session->userdata('username'));
-        $data['pesanan'] = $this->pesanan->muatPesanan($user_db['id_user']);
-        $this->template->load('cabang/HalamanDashboard', 'cabang/pesanan/HalamanPesanan', $data);
+        $data['barangkeluar'] = $this->sc->muatStok($user_db['nama']);
+
+        $this->template->load('cabang/HalamanDashboard', 'cabang/barangkeluar/Halamanbarangkeluar', $data);
     }
 }

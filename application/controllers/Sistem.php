@@ -13,6 +13,8 @@ class Sistem extends CI_Controller
         $this->load->model('Barang', 'barang');
         $this->load->model('Cabang', 'cabang');
         $this->load->model('Pesanan', 'pesanan');
+        $this->load->model('barangmasuk', 'bm');
+        $this->load->model('BarangKeluar', 'bk');
     }
 
     // LOGIN
@@ -240,7 +242,6 @@ class Sistem extends CI_Controller
                 redirect('HalamanCabang');
             } else {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Ubah Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-
                 redirect('HalamanUbahCabang/edit');
             }
         }
@@ -293,7 +294,7 @@ class Sistem extends CI_Controller
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|greater_than[0]');
         $this->form_validation->set_rules('id_kategori', 'Kategori ', 'required');
         $this->form_validation->set_rules('satuan', 'Satuan', 'required');
 
@@ -323,7 +324,8 @@ class Sistem extends CI_Controller
                 'tanggal_pesanan' => $input['tanggal'],
                 'nama_cabang' => $input['nama_cabang'],
                 'status' => 'Pending',
-                'barang_id' => $input['nama_barang']
+                'barang_id' => $input['nama_barang'],
+                'id_user' => $input['id_user']
             ];
             $query =  $this->pesanan->simpanPesanan($data);
             if ($query) {
@@ -343,14 +345,15 @@ class Sistem extends CI_Controller
         $data = [
             'status' => 'Disetujui'
         ];
+
         $query = $this->pesanan->updatePesanan($id, $data);
         if ($query) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-            redirect('HalamanKonfirmasiPesanan');
+            redirect('HalamanNamaCabang');
         } else {
             $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 
-            redirect('HalamanKonfirmasiPesanan');
+            redirect('HalamanNamaCabang');
         }
     }
     public function tolakPesanan($getId)
@@ -363,14 +366,112 @@ class Sistem extends CI_Controller
         $query = $this->pesanan->updatePesanan($id, $data);
         if ($query) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-            redirect('HalamanKonfirmasiPesanan');
+            redirect('HalamanNamaCabang');
         } else {
             $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 
-            redirect('HalamanKonfirmasiPesanan');
+            redirect('HalamanNamaCabang');
         }
     }
 
+
+    //MENU BARANG MASUK
+    public function simpanBarangMasuk()
+    {
+        $data['title'] = 'Barang Masuk';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|greater_than[0]');
+        $this->form_validation->set_rules('id_kategori', 'Kategori ', 'required');
+        $this->form_validation->set_rules('satuan', 'Satuan', 'required');
+
+        $today = date('ymd');
+        $prefix = 'BM' . $today;
+        $lastKode = $this->bm->idBarangMasukTerbesar();
+
+
+        //mengambail 4 char dari belakang
+        $noUrut = (int) substr($lastKode, -4, 4);
+        $noUrut++;
+        $newKode = $prefix . sprintf("%04s", $noUrut);
+
+        $data['kategori'] = $this->kategori->muatSemuaKategori();
+        $data['barang'] = $this->barang->muatSemuaBarang();
+        $data['idBarangMasuk'] = $newKode;
+        if ($this->form_validation->run() == false) {
+            $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanEntriMasuk', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $data = [
+                'id_barang_masuk ' => $input['id_barang_masuk'],
+                'kategori_id ' => $input['id_kategori'],
+                'barang_id' => $input['nama_barang'],
+                'jumlah_masuk' => $input['jumlah'],
+                'tanggal_masuk' => $input['tanggal'],
+                'nama_cabang' => $input['nama_cabang'],
+                'satuan ' => $input['satuan'],
+                'keterangan' => $input['keterangan'],
+
+            ];
+            $query =  $this->bm->simpanBarangMasuk($data);
+            if ($query) {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah Barang Masuk<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanBarangMasuk');
+            } else {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah Barang Masuk<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanEntriBarangMasuk');
+            }
+        }
+    }
+    public function simpanBarangKeluar()
+    {
+        $data['title'] = 'Barang Keluar';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+        $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|greater_than[0]');
+        $this->form_validation->set_rules('id_kategori', 'Kategori ', 'required');
+        $this->form_validation->set_rules('satuan', 'Satuan', 'required');
+
+
+        $today = date('ymd');
+        $prefix = 'BK' . $today;
+        $lastKode = $this->bk->idBarangKeluarTerbesar();
+
+
+        //mengambail 4 char dari belakang
+        $noUrut = (int) substr($lastKode, -4, 4);
+        $noUrut++;
+        $newKode = $prefix . sprintf("%04s", $noUrut);
+
+        $data['kategori'] = $this->kategori->muatSemuaKategori();
+        $data['barang'] = $this->barang->muatSemuaBarang();
+        $data['idBarangKeluar'] = $newKode;
+        if ($this->form_validation->run() == false) {
+            $this->template->load('cabang/HalamanDashboard', 'cabang/barangkeluar/HalamanEntriBarangKeluar', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $data = [
+                'id_barang_keluar ' => $input['id_barang_keluar'],
+                'kategori_id ' => $input['id_kategori'],
+                'barang_id' => $input['nama_barang'],
+                'jumlah_keluar' => $input['jumlah'],
+                'tanggal_keluar' => $input['tanggal'],
+                'nama_cabang' => $input['nama_cabang'],
+                'satuan ' => $input['satuan'],
+
+            ];
+            $query =  $this->bk->simpanBarangKeluar($data);
+            if ($query) {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah Barang Keluar<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanBarangKeluar');
+            } else {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah Barang Keluar<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanEntriBarangKeluar');
+            }
+        }
+    }
 
 
 
@@ -404,10 +505,10 @@ class Sistem extends CI_Controller
             ];
             $query =  $this->User->simpanUser($data);
             if ($query) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil Tambah User</div>');
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanPengelolaanUser');
             } else {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal Tambah User</div>');
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanEntriUser');
             }
         }
@@ -418,15 +519,45 @@ class Sistem extends CI_Controller
         $id = encode_php_tags($getId);
         $status = $this->User->muatUser($id)['is_active'];
         $toggle = $status ? 0 : 1; //Jika user aktif maka nonaktifkan, begitu pula sebaliknya
-        $pesan = $toggle ? 'user diaktifkan.' : 'user dinonaktifkan.';
         $query = $this->User->aktivasiUser('user', 'id_user', $id, ['is_active' => $toggle]);
         if ($query) {
-            if ($pesan == 1) {
+            if ($toggle == 1) {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil diaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+            } else {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil dinonaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             }
-            $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil dinonaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         }
         redirect('HalamanPengelolaanUser');
+    }
+    public function updateUser($getId)
+    {
+        $id = encode_php_tags($getId);
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('no_telp', 'No Telp', 'required');
+        if ($this->form_validation->run() == false) {
+
+            $data['title'] = "Kelola User";
+            $data['user'] = $this->User->cek($this->session->userdata('username'));
+            $data['akun'] = $this->User->muatUser($id);
+            $this->template->load('admin/HalamanDashboard', 'admin/kelolaakun/HalamanUbahUser', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $data = [
+                'username' => $input['username'],
+                'email' => $input['email'],
+                'no_telp' => $input['no_telp']
+            ];
+            $query = $this->User->updateUser($id, $data);
+            if ($query) {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Ubah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+                redirect('HalamanPengelolaanUser');
+            } else {
+                $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Ubah Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+
+                redirect('HalamanUbahUser/edit');
+            }
+        }
     }
 
     public function hapusUser($getId)

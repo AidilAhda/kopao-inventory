@@ -11,13 +11,16 @@
 
     <title><?= $title ?> | Kopao Inventory</title>
 
-    <!-- Custom fonts for this template-->
+
     <!-- Custom fonts for this template-->
     <link rel="icon" type="image/png" href="<?= base_url('assets/') ?>img/logo-kopao2.png" />
     <link href="<?= base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Datepicker -->
+    <link href="<?= base_url(); ?>assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- DataTables -->
     <link href="<?= base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -77,15 +80,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-0" href="charts.html">
+                    <a class="nav-link pb-0" href="<?= base_url('HalamanBarangMasuk') ?>">
                         <i class="fas fa-fw fa-download"></i>
                         <span>Barang Masuk</span></a>
                     </a>
                 </li>
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
-                    <a class="nav-link pb-0" href="tables.html">
-                        <i class="fas fa-fw fa-upload"></i>
+                    <a class="nav-link pb-0" href="<?= base_url('HalamanBarangKeluar') ?>">
+                        <i class=" fas fa-fw fa-upload"></i>
                         <span>Barang Keluar</span></a>
                     </a>
                 </li>
@@ -197,11 +200,10 @@
             <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
             <script src="<?= base_url('assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="<?= base_url('assets/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
+
+
 
             <!-- Page level plugins -->
             <script src="<?= base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -218,6 +220,8 @@
             <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
 
             <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
+
+
 
             <script type="text/javascript">
                 $(document).ready(function() {

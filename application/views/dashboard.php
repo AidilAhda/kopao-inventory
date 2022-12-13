@@ -5,6 +5,7 @@
         <marquee>Welcome To Kopao Inventory Application Information System</marquee>
     </h4>
     <div class="text-center">
+
         <img class="mx-auto" src=" <?= base_url('assets/') ?>img/logo-kopao2.png" width="423px">
         <h3>Selamat datang di System Inventory Kopao</h3>
     </div>

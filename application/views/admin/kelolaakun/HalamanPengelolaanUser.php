@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <div class="table-responsive">
         <table class="table table-striped dt-responsive nowrap " id="dataTable">
             <thead>
@@ -49,7 +50,7 @@
                             <td><?= $a['role_id']; ?></td>
                             <td>
                                 <a href="<?= base_url('Sistem/aktifkanUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm <?= $a['is_active'] ? 'btn-secondary' : 'btn-success' ?>" title="<?= $a['is_active'] ? 'Nonaktifkan User' : 'Aktifkan User' ?>"><i class="fa fa-fw fa-power-off"></i></a>
-                                <a href=" " class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
+                                <a href="<?= base_url('HalamanUbahUser/edit/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
                                 <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('Sistem/hapusUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
                             </td>
                         </tr>

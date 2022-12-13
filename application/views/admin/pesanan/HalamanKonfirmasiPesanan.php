@@ -1,5 +1,6 @@
 <?= $this->session->flashdata('pesan'); ?>
 <div class="card shadow-sm border-bottom-primary">
+
     <div class="card-header bg-white py-3">
         <div class="row">
             <div class="col">
@@ -14,7 +15,7 @@
         <table class="table table-striped dt-responsive nowrap " id="dataTable">
             <thead>
                 <tr>
-                    <th>No </th>
+
                     <th>ID </th>
                     <th>Tanggal</th>
                     <th>Nama Cabang</th>
@@ -28,13 +29,13 @@
             </thead>
             <tbody>
                 <?php
-                $no = 1;
+
                 if ($pesanan) :
                     foreach ($pesanan as $p) :
                 ?>
                         <tr>
 
-                            <td><?= $no++ ?></td>
+
                             <td><?= $p['id_pesanan']; ?></td>
                             </td>
                             <td><?= $p['tanggal_pesanan']; ?></td>
@@ -46,7 +47,7 @@
                             <td><?= $p['status']; ?></td>
                             <td>
                                 <a href="<?= base_url('Sistem/konfirmasiPesanan/') . $p['id_pesanan'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fa fa-check"></i></a>
-                                <a href=" <?= base_url('Sistem/tolakPesanan/') . $p['id_pesanan'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-xmark"></i></a>
+                                <a href=" <?= base_url('Sistem/tolakPesanan/') . $p['id_pesanan'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-times"></i></a>
                                 <a href="" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>

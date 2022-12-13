@@ -9,7 +9,7 @@
                         </h4>
                     </div>
                     <div class="col-auto">
-                        <a href="<?= base_url('HalamanPesanan') ?>" class="btn btn-sm btn-secondary btn-icon-split">
+                        <a href="<?= base_url('HalamanBarangMasuk') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
                             </span>
@@ -22,12 +22,12 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/simpanPesanan') ?>">
+                <form class="user" method="post" action="<?= base_url('Sistem/simpanBarangMasuk') ?>">
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="id_pesanan">ID Pesanan</label>
+                        <label class="col-md-3 text-md-right" for="id_barang_masuk">ID Barang Masuk</label>
                         <div class="col-md-9">
-                            <input readonly value="<?= set_value('id_pesanan', $idPesanan); ?>" name="id_pesanan" id="id_pesanan" type="text" class="form-control" placeholder="ID Barang...">
-                            <?= form_error('id_pesanan', '<small class="text-danger">', '</small>'); ?>
+                            <input readonly value="<?= set_value('id_barang_masuk', $idBarangMasuk); ?>" name="id_barang_masuk" id="id_barang_masuk" type="text" class="form-control" placeholder="ID Barang...">
+                            <?= form_error('id_barang_masuk', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
 
@@ -36,10 +36,8 @@
                         <div class="col-md-9">
                             <input readonly value="<?= set_value('nama_cabang', $user['nama']); ?>" name="nama_cabang" id="nama_cabang" type="text" class="form-control" placeholder="Nama Barang...">
                             <?= form_error('nama_cabang', '<small class="text-danger">', '</small>'); ?>
-
                         </div>
                     </div>
-                    <input value="<?= set_value('id_user', $user['id_user']); ?>" name="id_user" id="id_user" type="hidden" class="form-control" placeholder="ID User...">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="tanggal">Tanggal</label>
                         <div class="col-md-9">
@@ -101,6 +99,13 @@
 
                             </div>
                             <?= form_error('satuan', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="keterangan">Keterangan</label>
+                        <div class="col-md-9">
+                            <textarea value="<?= set_value('keterangan'); ?>" name="keterangan" id="keterangan" type="text" class="form-control" placeholder="Rusak/Hilang/Kadaluarsa"></textarea>
+                            <?= form_error('keterangan', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="row form-group">

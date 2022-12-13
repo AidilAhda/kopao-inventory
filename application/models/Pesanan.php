@@ -8,16 +8,15 @@ class Pesanan extends CI_Model
     {
         $this->db->join('kategori k', 'p.kategori_id = k.id_kategori');
         $this->db->join('barang b', 'p.barang_id = b.id_barang');
-        $this->db->order_by('p.tanggal_pesanan', 'desc');
-        $this->db->where('status', 'Pending');
+        $this->db->order_by('tanggal_pesanan', 'desc');
         return $this->db->get('pesanan p ')->result_array();
     }
-    public function muatPesanan($user)
+    public function muatPesanan($id)
     {
         $this->db->join('kategori k', 'p.kategori_id = k.id_kategori');
         $this->db->join('barang b', 'p.barang_id = b.id_barang');
         $this->db->order_by('p.tanggal_pesanan', 'desc');
-        return $this->db->get_where('pesanan p ', ['p.nama_cabang' => $user])->result_array();
+        return $this->db->get_where('pesanan p ', ['p.id_user' => $id])->result_array();
     }
     public function idPesananTerbesar()
     {

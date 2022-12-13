@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class HalamanPesanan extends CI_Controller
+class HalamanEntriBarangMasuk extends CI_Controller
 {
     public function __construct()
     {
@@ -11,22 +11,30 @@ class HalamanPesanan extends CI_Controller
 
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
-        $this->load->model('Pesanan', 'pesanan');
+        $this->load->model('BarangMasuk', 'bm');
 
         //cek apakah belum login tapi sudah masuk melalui url
         is_logged_in();
         isCabang();
     }
-
     public function index()
     {
-        $data['title'] = 'Pesanan';
+        $data['title'] = 'Barang Masuk';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
+
+        $today = date('ymd');
+        $prefix = 'BM' . $today;
+        $lastKode = $this->bm->idBarangMasukTerbesar();
+
+
+        //mengambail 4 char dari belakang
+        $noUrut = (int) substr($lastKode, -4, 4);
+        $noUrut++;
+        $newKode = $prefix . sprintf("%04s", $noUrut);
+
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
-
-        $user_db = $this->User->cek($this->session->userdata('username'));
-        $data['pesanan'] = $this->pesanan->muatPesanan($user_db['id_user']);
-        $this->template->load('cabang/HalamanDashboard', 'cabang/pesanan/HalamanPesanan', $data);
+        $data['idBarangMasuk'] = $newKode;
+        $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanEntriBarangMasuk', $data);
     }
 }
