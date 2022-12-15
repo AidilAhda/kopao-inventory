@@ -376,7 +376,7 @@ class Sistem extends CI_Controller
     }
 
 
-    //MENU BARANG MASUK
+    //MENU BARANG MASUK/KELUAR
     public function simpanBarangMasuk()
     {
         $data['title'] = 'Barang Masuk';
@@ -401,7 +401,7 @@ class Sistem extends CI_Controller
         $data['barang'] = $this->barang->muatSemuaBarang();
         $data['idBarangMasuk'] = $newKode;
         if ($this->form_validation->run() == false) {
-            $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanEntriMasuk', $data);
+            $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanEntriBarangMasuk', $data);
         } else {
             $input = $this->input->post(null, true);
             $data = [

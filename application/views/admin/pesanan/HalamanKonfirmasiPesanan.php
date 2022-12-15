@@ -58,7 +58,7 @@
                             <td>
                                 <a href="<?= base_url('Sistem/konfirmasiPesanan/') . $p['id_pesanan'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fa fa-check"></i></a>
                                 <a href=" <?= base_url('Sistem/tolakPesanan/') . $p['id_pesanan'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-times"></i></a>
-                                <a href="" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-print"></i></a>
+                                <a href="<?= base_url('HalamanLaporan/pesanan/') . $p['id_pesanan'] ?>" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-print"></i></a>
                             </td>
                         </tr>
 

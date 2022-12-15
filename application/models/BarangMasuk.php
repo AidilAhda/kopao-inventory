@@ -19,7 +19,7 @@ class BarangMasuk extends CI_Model
         $this->db->order_by('tanggal_masuk', 'desc');
         return $this->db->get_where('barangmasuk bm ', ['bm.nama_cabang' => $user])->result_array();
     }
-    public function muatBarang($limit = null, $id_barang = null, $range = null)
+    public function muatSemuaBarangMasuk($limit = null, $id_barang = null, $range = null)
     {
         $this->db->join('kategori k', 'bm.kategori_id = k.id_kategori');
         $this->db->join('barang b', 'bm.barang_id = b.id_barang');

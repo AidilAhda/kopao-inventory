@@ -7,7 +7,9 @@ class HalamanLaporan extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->library('CustomPDF');
         $this->load->model('user', 'User');
+        $this->load->model('Pesanan', 'pesanan');
         $this->load->model('BarangMasuk', 'bm');
         $this->load->model('BarangKeluar', 'bk');
 
@@ -34,9 +36,9 @@ class HalamanLaporan extends CI_Controller
 
             $query = '';
             if ($table == 'barangmasuk') {
-                $query = $this->bm->muatBarang(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->bm->muatSemuaBarangMasuk(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             } else {
-                $query = $this->bk->muatBarang(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
+                $query = $this->bk->muatSemuaBarangKeluar(null, null, ['mulai' => $mulai, 'akhir' => $akhir]);
             }
             $this->_cetak($query, $table, $tanggal);
         }
@@ -68,9 +70,17 @@ class HalamanLaporan extends CI_Controller
         }
     }
 
+    public function pesanan($getId)
+    {
+        isAdmin();
+        $id = encode_php_tags($getId);
+        $data = $this->pesanan->cetakPesanan($id);
+        $this->_cetakPesanan($data);
+    }
+
     private function _cetak($data, $table_, $tanggal)
     {
-        $this->load->library('CustomPDF');
+
         $table = $table_ == 'barangmasuk' ? 'Barang Masuk' : 'Barang Keluar';
 
         $pdf = new FPDF();
@@ -111,7 +121,7 @@ class HalamanLaporan extends CI_Controller
 
             $pdf->Ln();
             $pdf->Cell(79);
-            $pdf->Cell(259, 7, 'Pekanbaru, ' . date('d-m-y'), 0, 1, 'C');
+            $pdf->Cell(259, 7, 'Pekanbaru, ' .  date('d F Y'), 0, 1, 'C');
             $pdf->Cell(75);
             $pdf->Cell(270, 7, 'Kepala Gudang,', 0, 1, 'C');
             $pdf->Ln(20);
@@ -146,7 +156,7 @@ class HalamanLaporan extends CI_Controller
             }
             $pdf->Ln();
             $pdf->Cell(79);
-            $pdf->Cell(259, 7, 'Pekanbaru, ' . date('d-m-y'), 0, 1, 'C');
+            $pdf->Cell(259, 7, 'Pekanbaru, ' . date('d F Y'), 0, 1, 'C');
             $pdf->Cell(75);
             $pdf->Cell(270, 7, 'Kepala Gudang,', 0, 1, 'C');
             $pdf->Ln(20);
@@ -162,6 +172,60 @@ class HalamanLaporan extends CI_Controller
         endif;
         ob_end_clean();
         $file_name = $table . ' ' . $tanggal;
+        $pdf->Output('I', $file_name);
+    }
+    private function _cetakPesanan($data)
+    {
+        $pdf = new FPDF();
+        $pdf->AddPage('L', 'Letter');
+        $pdf->SetFont('Times', 'B', 16);
+        $pdf->Image('./assets/img/logo-kopao2.png', 10, 8, 17, 15);
+        $pdf->Image('./assets/img/2.png', 255, 8, 15, 14);
+        $pdf->Cell(260, 7, 'Laporan Pesanan', 0, 1, 'C');
+        $pdf->SetFont('Times', '', 10);
+        $pdf->Cell(260, 4, 'Tanggal : ' .  date('d F Y'), 0, 1, 'C');
+        $pdf->Line(10, 25, 270, 25);
+        $pdf->Ln(10);
+
+        $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
+        $pdf->Cell(35, 7, 'ID Pesanan', 1, 0, 'C');
+        $pdf->Cell(40, 7, 'Tanggal Pesanan', 1, 0, 'C');
+        $pdf->Cell(40, 7, 'Nama Cabang', 1, 0, 'C');
+        $pdf->Cell(55, 7, 'Nama Barang', 1, 0, 'C');
+        $pdf->Cell(35, 7, 'Jumlah Barang', 1, 0, 'C');
+        $pdf->Cell(42, 7, 'Kategori', 1, 0, 'C');
+
+        $pdf->Ln();
+
+        $pdf->SetFont('Arial', 'B', 10);
+
+        $no = 1;
+        foreach ($data as $d) {
+            $pdf->SetFont('Arial', '', 10);
+            $pdf->Cell(10, 7, $no++ . '.', 1, 0, 'C');
+            $pdf->Cell(35, 7, $d['id_pesanan'], 1, 0, 'C');
+            $pdf->Cell(40, 7, $d['tanggal_pesanan'], 1, 0, 'C');
+            $pdf->Cell(40, 7, $d['nama_cabang'], 1, 0, 'L');
+            $pdf->Cell(55, 7, $d['nama_barang'], 1, 0, 'L');
+            $pdf->Cell(35, 7, $d['jumlah_barang'] . ' ' . $d['satuan'], 1, 0, 'C');
+            $pdf->Cell(42, 7, $d['nama_kategori'], 1, 0, 'C');
+            $pdf->Ln();
+        }
+        $pdf->Ln();
+        $pdf->Cell(79);
+        $pdf->Cell(259, 7, 'Pekanbaru, ' . date('d-m-y'), 0, 1, 'C');
+        $pdf->Cell(75);
+        $pdf->Cell(270, 7, 'Kepala Gudang,', 0, 1, 'C');
+        $pdf->Ln(20);
+        $pdf->Cell(75);
+        $pdf->SetFont('Times', 'B', 15);
+        $pdf->Cell(270, 7, 'KaSetya, S.Tr, M.Kom', 0, 1, 'C');
+        $pdf->SetFont('Times', '', 12);
+        $pdf->Cell(75);
+        $pdf->Cell(270, 7, 'NIP. 19601113 198603 1 003,', 0, 1, 'C');
+
+        ob_end_clean();
+        $file_name = 'Laporan Pesanan';
         $pdf->Output('I', $file_name);
     }
 }
