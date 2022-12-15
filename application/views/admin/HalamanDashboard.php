@@ -101,6 +101,12 @@
                     <span>Data Cabang</span></a>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('halamannamacabang/namaCabang') ?>">
+                    <i class=" fas fa-database"></i>
+                    <span>Barang Cabang</span></a>
+                </a>
+            </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link " href="<?= base_url('HalamanNamaCabang') ?>">

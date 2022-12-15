@@ -22,4 +22,11 @@ class HalamanNamaCabang extends CI_Controller
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('admin/HalamanDashboard', 'admin/HalamanNamaCabang', $data);
     }
+    public function namaCabang()
+    {
+        $data['title'] = 'Barang Cabang';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['cabang'] = $this->User->muatSemuaUser();
+        $this->template->load('admin/HalamanDashboard', 'admin/barangcabang/HalamanNamaCabang', $data);
+    }
 }
