@@ -24,7 +24,7 @@ class HalamanBarangCabang extends CI_Controller
         $data['title'] = 'Barang';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $data['stok'] = $this->stok->muatStokCabang($cabang);
-        $data['cabang'] = $this->stok->muatCabang($cabang);
+        $data['cabang'] = $this->User->muatUser($cabang);
         $this->template->load('admin/HalamanDashboard', 'admin/barangcabang/HalamanBarangCabang', $data);
     }
 }

@@ -26,7 +26,7 @@ class HalamanEntriBarangCabang extends CI_Controller
 
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
-        $data['cabang'] = $this->sc->muatCabang($id);
+        $data['cabang'] = $this->User->muatUser($id);
         $this->template->load('admin/HalamanDashboard', 'admin/barangcabang/HalamanEntriBarangCabang', $data);
     }
 }

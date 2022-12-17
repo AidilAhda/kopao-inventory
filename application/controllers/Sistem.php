@@ -593,7 +593,7 @@ class Sistem extends CI_Controller
     }
 
     // BARANG CABANG
-    public function updateBarangCabang($getId)
+    public function simpanBarangCabang($getId)
     {
         isAdmin();
         $id = encode_php_tags($getId);
@@ -605,7 +605,7 @@ class Sistem extends CI_Controller
             $data['user'] = $this->User->cek($this->session->userdata('username'));
             $data['kategori'] = $this->kategori->muatSemuaKategori();
             $data['barang'] = $this->barang->muatSemuaBarang();
-            $data['cabang'] = $this->sc->muatCabang($id);
+            $data['cabang'] = $this->User->muatUser($id);
             $this->template->load('cabang/HalamanDashboard', 'admin/barangcabang/HalamanEntriBarangCabang', $data);
         } else {
             $input = $this->input->post(null, true);
@@ -613,17 +613,16 @@ class Sistem extends CI_Controller
                 'barang_id' => $input['nama_barang'],
                 'kategori_id' => $input['id_kategori'],
                 'nama_cabang' => $input['nama_cabang'],
-                'nama_cabang' => $input['nama_cabang'],
                 'total' => 0,
-                'satuan' => $input['satuan']
+                'satuan' => $input['satuan'],
+                'id_user' => $input['id_user']
             ];
-            $query = $this->sc->updateStokCabang($id, $data);
+            $query = $this->sc->simpanStokCabang($data);
             if ($query) {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah Barang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanBarangCabang/barangCabang/' . $id);
             } else {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah Barang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-
                 redirect('HalamanBarangCabang/barangCabang/' . $id);
             }
         }

@@ -32,7 +32,7 @@ class BarangKeluar extends CI_Model
             $this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
             $this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
         }
-        $this->db->order_by('id_barang_keluar', 'DESC');
+        $this->db->order_by('tanggal_keluar', 'asc');
         return $this->db->get('barangkeluar bk')->result_array();
     }
     public function simpanBarangkeluar($data)

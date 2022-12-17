@@ -22,13 +22,10 @@ class HalamanBarangMasuk extends CI_Controller
     {
         $data['title'] = 'Barang Masuk';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
-
-
-
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
         $user_db = $this->User->cek($this->session->userdata('username'));
-        $data['barangmasuk'] = $this->sc->muatStok($user_db['nama']);
+        $data['barangmasuk'] = $this->sc->muatStokCabang($user_db['id_user']);
 
         $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanBarangMasuk', $data);
     }

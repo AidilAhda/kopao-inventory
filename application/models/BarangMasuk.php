@@ -33,7 +33,7 @@ class BarangMasuk extends CI_Model
             $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
             $this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
         }
-        $this->db->order_by('id_barang_masuk', 'DESC');
+        $this->db->order_by('tanggal_masuk', 'asc');
         return $this->db->get('barangmasuk bm')->result_array();
     }
     public function simpanBarangMasuk($data)

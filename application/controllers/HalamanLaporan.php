@@ -109,8 +109,8 @@ class HalamanLaporan extends CI_Controller
 
         if ($table_ == 'barangmasuk') :
             $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
-            $pdf->Cell(35, 7, 'Tgl Masuk', 1, 0, 'C');
             $pdf->Cell(40, 7, 'ID Transaksi', 1, 0, 'C');
+            $pdf->Cell(35, 7, 'Tgl Masuk', 1, 0, 'C');
             $pdf->Cell(42, 7, 'Nama Cabang', 1, 0, 'C');
             $pdf->Cell(55, 7, 'Nama Barang', 1, 0, 'C');
             $pdf->Cell(30, 7, 'Jumlah Masuk', 1, 0, 'C');
@@ -121,8 +121,8 @@ class HalamanLaporan extends CI_Controller
             foreach ($data as $d) {
                 $pdf->SetFont('Arial', '', 10);
                 $pdf->Cell(10, 7, $no++ . '.', 1, 0, 'C');
-                $pdf->Cell(35, 7, $d['tanggal_masuk'], 1, 0, 'C');
                 $pdf->Cell(40, 7, $d['id_barang_masuk'], 1, 0, 'C');
+                $pdf->Cell(35, 7, $d['tanggal_masuk'], 1, 0, 'C');
                 $pdf->Cell(42, 7, $d['nama_cabang'], 1, 0, 'C');
                 $pdf->Cell(55, 7, $d['nama_barang'], 1, 0, 'L');
                 $pdf->Cell(30, 7, $d['jumlah_masuk'] . ' ' . $d['satuan'], 1, 0, 'C');
@@ -145,24 +145,24 @@ class HalamanLaporan extends CI_Controller
 
         else :
             $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
-            $pdf->Cell(30, 7, 'Tanggal Keluar', 1, 0, 'C');
             $pdf->Cell(40, 7, 'ID Transaksi', 1, 0, 'C');
+            $pdf->Cell(30, 7, 'Tanggal Keluar', 1, 0, 'C');
+            $pdf->Cell(47, 7, 'Nama Cabang', 1, 0, 'C');
             $pdf->Cell(50, 7, 'Nama Barang', 1, 0, 'C');
             $pdf->Cell(35, 7, 'Jumlah Keluar', 1, 0, 'C');
             $pdf->Cell(30, 7, 'Kategori', 1, 0, 'C');
-            $pdf->Cell(47, 7, 'Nama Cabang', 1, 0, 'C');
             $pdf->Ln();
 
             $no = 1;
             foreach ($data as $d) {
                 $pdf->SetFont('Arial', '', 10);
                 $pdf->Cell(10, 7, $no++ . '.', 1, 0, 'C');
-                $pdf->Cell(30, 7, $d['tanggal_keluar'], 1, 0, 'C');
                 $pdf->Cell(40, 7, $d['id_barang_keluar'], 1, 0, 'C');
+                $pdf->Cell(30, 7, $d['tanggal_keluar'], 1, 0, 'C');
+                $pdf->Cell(47, 7, $d['nama_cabang'], 1, 0, 'C');
                 $pdf->Cell(50, 7, $d['nama_barang'], 1, 0, 'L');
                 $pdf->Cell(35, 7, $d['jumlah_keluar'] . ' ' . $d['satuan'], 1, 0, 'C');
                 $pdf->Cell(30, 7, $d['nama_kategori'], 1, 0, 'C');
-                $pdf->Cell(47, 7, $d['nama_cabang'], 1, 0, 'C');
                 $pdf->Ln();
             }
             $pdf->Ln();
@@ -207,6 +207,7 @@ class HalamanLaporan extends CI_Controller
         $pdf->Cell(35, 7, 'Jumlah Barang', 1, 0, 'C');
         $pdf->Cell(42, 7, 'Kategori', 1, 0, 'C');
 
+
         $pdf->Ln();
 
         $pdf->SetFont('Arial', 'B', 10);
@@ -221,6 +222,7 @@ class HalamanLaporan extends CI_Controller
             $pdf->Cell(55, 7, $d['nama_barang'], 1, 0, 'L');
             $pdf->Cell(35, 7, $d['jumlah_barang'] . ' ' . $d['satuan'], 1, 0, 'C');
             $pdf->Cell(42, 7, $d['nama_kategori'], 1, 0, 'C');
+
             $pdf->Ln();
         }
         $pdf->Ln();
