@@ -122,7 +122,7 @@
             <!-- Heading -->
 
             <li class="nav-item">
-                <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanLaporan/admin'); ?>">
+                <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanNamaCabang/admin'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span><b>Laporan</b></span>
                 </a>
@@ -271,6 +271,7 @@
     <script src="<?= base_url('assets/') ?>vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
 
     <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
+
     <script type="text/javascript">
         $(function() {
             $('date').datepicker({
@@ -303,6 +304,41 @@
             cb(start, end);
         });
     </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('date').datepicker({
+                uiLibrary: 'bootstrap4',
+                format: 'yyyy-mm-dd'
+            });
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function dp(start, end) {
+                $('#tgl_pesanan').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+            }
+
+            $('#tgl_pesanan').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Hari ini': [moment(), moment()],
+                    'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '7 hari terakhir': [moment().subtract(6, 'days'), moment()],
+                    '30 hari terakhir': [moment().subtract(29, 'days'), moment()],
+                    'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+                    'Bulan lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    'Tahun ini': [moment().startOf('year'), moment().endOf('year')],
+                    'Tahun lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+
+                }
+            }, dp);
+
+            dp(start, end);
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({

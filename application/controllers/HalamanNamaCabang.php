@@ -13,10 +13,10 @@ class HalamanNamaCabang extends CI_Controller
         //cek apakah belum login tapi sudah masuk melalui url
         is_logged_in();
         // cek siapa yang login dan ingin masuk ke page admin
-        isAdmin();
     }
     public function index()
     {
+        isAdmin();
         $data['title'] = 'Pesanan';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $data['cabang'] = $this->User->muatSemuaUser();
@@ -24,9 +24,26 @@ class HalamanNamaCabang extends CI_Controller
     }
     public function namaCabang()
     {
+        isAdmin();
         $data['title'] = 'Barang Cabang';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('admin/HalamanDashboard', 'admin/barangcabang/HalamanNamaCabang', $data);
+    }
+    public function admin()
+    {
+        isAdmin();
+        $data['title'] = 'Laporan';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['cabang'] = $this->User->muatSemuaUser();
+        $this->template->load('admin/HalamanDashboard', 'admin/laporan/HalamanNamaCabang', $data);
+    }
+    public function owner()
+    {
+        isOwner();
+        $data['title'] = 'Laporan';
+        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['cabang'] = $this->User->muatSemuaUser();
+        $this->template->load('owner/HalamanDashboard', 'owner/laporan/HalamanNamaCabang', $data);
     }
 }

@@ -30,6 +30,7 @@
                             <?= form_error('id_barang_masuk', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
+                    <input value="<?= set_value('id_user', $user['id_user']); ?>" name="id_user" id="id_user" type="hidden" class="form-control" placeholder="ID User...">
 
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama_cabang">Nama Cabang</label>
@@ -38,6 +39,7 @@
                             <?= form_error('nama_cabang', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
+
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="tanggal">Tanggal</label>
                         <div class="col-md-9">
@@ -91,6 +93,7 @@
                                     <option value="" selected disabled>Pilih Satuan Barang</option>
                                     <option value="Kilogram">Kilogram</option>
                                     <option value="Unit">Unit</option>
+                                    <option value="Lusin">Lusin</option>
                                     <option value="Pack">Pack</option>
                                     <option value="Botol">Botol</option>
                                     <option value="Pcs">Pcs</option>

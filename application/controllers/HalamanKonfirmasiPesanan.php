@@ -11,6 +11,7 @@ class HalamanKonfirmasiPesanan extends CI_Controller
 
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
+        $this->load->model('User', 'cabang');
         $this->load->model('Pesanan', 'pesanan');
 
         //cek apakah belum login tapi sudah masuk melalui url
@@ -23,7 +24,8 @@ class HalamanKonfirmasiPesanan extends CI_Controller
         $cabang = encode_php_tags($id);
         $data['title'] = 'Pesanan';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
-        $data['pesanan'] = $this->pesanan->muatPesanan($cabang);
+        $data['pesanan'] = $this->pesanan->muatPesanan(true, $cabang);
+        $data['cabang'] = $this->cabang->muatUser($cabang);
         $this->template->load('admin/HalamanDashboard', 'admin/pesanan/HalamanKonfirmasiPesanan', $data);
     }
 }

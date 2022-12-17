@@ -26,7 +26,7 @@ class HalamanPesanan extends CI_Controller
         $data['barang'] = $this->barang->muatSemuaBarang();
 
         $user_db = $this->User->cek($this->session->userdata('username'));
-        $data['pesanan'] = $this->pesanan->muatPesanan($user_db['id_user']);
+        $data['pesanan'] = $this->pesanan->muatPesanan(false, $user_db['id_user']);
         $this->template->load('cabang/HalamanDashboard', 'cabang/pesanan/HalamanPesanan', $data);
     }
 }

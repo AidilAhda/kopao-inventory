@@ -19,16 +19,15 @@ class BarangMasuk extends CI_Model
         $this->db->order_by('tanggal_masuk', 'desc');
         return $this->db->get_where('barangmasuk bm ', ['bm.nama_cabang' => $user])->result_array();
     }
-    public function muatSemuaBarangMasuk($limit = null, $id_barang = null, $range = null)
+    public function muatSemuaBarangMasuk($limit = null, $id_cabang = null, $range = null)
     {
         $this->db->join('kategori k', 'bm.kategori_id = k.id_kategori');
         $this->db->join('barang b', 'bm.barang_id = b.id_barang');
         if ($limit != null) {
             $this->db->limit($limit);
         }
-        if ($id_barang != null) {
-            $this->db->where('id_barang', $id_barang);
-        }
+
+        $this->db->where('id_user', $id_cabang);
 
         if ($range != null) {
             $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);

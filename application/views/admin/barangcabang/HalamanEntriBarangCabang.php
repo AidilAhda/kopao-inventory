@@ -67,6 +67,7 @@
                                     <option value="" selected disabled>Pilih Satuan Barang</option>
                                     <option value="Kilogram">Kilogram</option>
                                     <option value="Unit">Unit</option>
+                                    <option value="Lusin">Lusin</option>
                                     <option value="Pack">Pack</option>
                                     <option value="Botol">Botol</option>
                                     <option value="Pcs">Pcs</option>

@@ -86,6 +86,7 @@ class Sistem extends CI_Controller
     // MENU KATEGORI
     public function tambahKategori()
     {
+        isAdmin();
         $data['title'] = 'Kategori';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'required');
@@ -109,6 +110,7 @@ class Sistem extends CI_Controller
 
     public function updateKategori($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'required|trim');
         if ($this->form_validation->run() == false) {
@@ -136,6 +138,7 @@ class Sistem extends CI_Controller
 
     public function hapusKategori($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         if ($this->kategori->hapusKategori($id)) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus kategori<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
@@ -146,6 +149,7 @@ class Sistem extends CI_Controller
     // MENU DATA BARANG
     public function tambahBarang()
     {
+        isAdmin();
         $data['title'] = 'Data Barang';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
@@ -184,6 +188,7 @@ class Sistem extends CI_Controller
 
     public function updateBarang($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
         $this->form_validation->set_rules('id_kategori', 'kategori', 'required');
@@ -215,6 +220,7 @@ class Sistem extends CI_Controller
 
     public function hapusBarang($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         if ($this->barang->hapusBarang($id)) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus kategori<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
@@ -225,6 +231,7 @@ class Sistem extends CI_Controller
     // MENU DATA CABANG
     public function updateCabang($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $this->form_validation->set_rules('alamat_cabang', 'Alamat Cabang', 'required');
         if ($this->form_validation->run() == false) {
@@ -250,6 +257,7 @@ class Sistem extends CI_Controller
 
     public function simpanCabang()
     {
+        isAdmin();
         $data['title'] = 'Data Cabang ';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('nama_cabang', 'Nama Cabang', 'required');
@@ -280,6 +288,7 @@ class Sistem extends CI_Controller
 
     public function hapusCabang($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         if ($this->cabang->hapusCabang($id)) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
@@ -291,6 +300,7 @@ class Sistem extends CI_Controller
     // MENU PESANAN
     public function simpanPesanan()
     {
+        isCabang();
         $data['title'] = 'Pesanan';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
@@ -339,9 +349,11 @@ class Sistem extends CI_Controller
         }
     }
 
-    public function konfirmasiPesanan($getId)
+    public function konfirmasiPesanan($getId, $getUser)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
+        $idUser = encode_php_tags($getUser);
 
         $data = [
             'status' => 'Disetujui'
@@ -350,16 +362,18 @@ class Sistem extends CI_Controller
         $query = $this->pesanan->updatePesanan($id, $data);
         if ($query) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-            redirect('HalamanNamaCabang');
+            redirect('HalamanKonfirmasiPesanan/pesananCabang/' . $idUser);
         } else {
             $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal dikonfirmasi<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 
-            redirect('HalamanNamaCabang');
+            redirect('HalamanKonfirmasiPesanan/pesananCabang/' . $idUser);
         }
     }
-    public function tolakPesanan($getId)
+    public function tolakPesanan($getId, $getUser)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
+        $idUser = encode_php_tags($getUser);
 
         $data = [
             'status' => 'Ditolak'
@@ -367,11 +381,11 @@ class Sistem extends CI_Controller
         $query = $this->pesanan->updatePesanan($id, $data);
         if ($query) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-            redirect('HalamanNamaCabang');
+            redirect('HalamanKonfirmasiPesanan/pesananCabang/' . $idUser);
         } else {
             $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 
-            redirect('HalamanNamaCabang');
+            redirect('HalamanKonfirmasiPesanan/pesananCabang/' . $idUser);
         }
     }
 
@@ -379,6 +393,7 @@ class Sistem extends CI_Controller
     //MENU BARANG MASUK/KELUAR
     public function simpanBarangMasuk()
     {
+        isCabang();
         $data['title'] = 'Barang Masuk';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
@@ -413,6 +428,7 @@ class Sistem extends CI_Controller
                 'nama_cabang' => $input['nama_cabang'],
                 'satuan ' => $input['satuan'],
                 'keterangan' => $input['keterangan'],
+                'id_user' => $input['id_user']
 
             ];
             $query =  $this->bm->simpanBarangMasuk($data);
@@ -427,6 +443,7 @@ class Sistem extends CI_Controller
     }
     public function simpanBarangKeluar()
     {
+        isCabang();
         $data['title'] = 'Barang Keluar';
         $data['user'] = $this->User->cek($this->session->userdata('username'));
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
@@ -461,6 +478,7 @@ class Sistem extends CI_Controller
                 'tanggal_keluar' => $input['tanggal'],
                 'nama_cabang' => $input['nama_cabang'],
                 'satuan ' => $input['satuan'],
+                'id_user' => $input['id_user']
 
             ];
             $query =  $this->bk->simpanBarangKeluar($data);
@@ -479,6 +497,7 @@ class Sistem extends CI_Controller
     // MENU KELOLA USER
     public function simpanUser()
     {
+        isAdmin();
         //jika gagal
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]|alpha_numeric');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]', [
@@ -517,6 +536,7 @@ class Sistem extends CI_Controller
 
     public function aktifkanUser($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $status = $this->User->muatUser($id)['is_active'];
         $toggle = $status ? 0 : 1; //Jika user aktif maka nonaktifkan, begitu pula sebaliknya
@@ -532,6 +552,7 @@ class Sistem extends CI_Controller
     }
     public function updateUser($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
@@ -563,6 +584,7 @@ class Sistem extends CI_Controller
 
     public function hapusUser($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         if ($this->User->hapusUser($id)) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
@@ -573,6 +595,7 @@ class Sistem extends CI_Controller
     // BARANG CABANG
     public function updateBarangCabang($getId)
     {
+        isAdmin();
         $id = encode_php_tags($getId);
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required');
         $this->form_validation->set_rules('id_kategori', 'Kategori ID', 'required');

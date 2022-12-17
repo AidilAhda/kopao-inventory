@@ -67,7 +67,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link pb-0 pt-0" href="<?= base_url('Halamanlaporan/owner'); ?>">
+                <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanNamaCabang/owner'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span><b>Laporan</b></span>
                 </a>

@@ -3,12 +3,12 @@
         <div class="card shadow-sm border-bottom-primary">
             <div class="card-header bg-white py-3">
                 <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-                    Form
+                    Laporan <?= $cabang['nama'] ?>
                 </h4>
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('HalamanLaporan/admin') ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanLaporan/admin/' . $cabang['id_user']) ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="transaksi">Laporan Transaksi</label>
                         <div class="col-md-9">
