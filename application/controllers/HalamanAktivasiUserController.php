@@ -30,6 +30,6 @@ class HalamanAktivasiUserController extends CI_Controller
                 $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>User Berhasil dinonaktifkan<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
             }
         }
-        redirect('HalamanPengelolaanAkun');
+        redirect('HalamanPengelolaanUser');
     }
 }

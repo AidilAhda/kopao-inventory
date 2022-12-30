@@ -61,7 +61,7 @@ class HalamanEntriUserController extends CI_Controller
             $query =  $this->User->simpanUser($data);
             if ($query) {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Tambah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-                redirect('HalamanPengelolaanAkun');
+                redirect('HalamanPengelolaanUser');
             } else {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Tambah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
                 redirect('HalamanEntriUserController');

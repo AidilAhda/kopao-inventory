@@ -150,7 +150,7 @@
             <li class="nav-item <?= $title == 'Kelola User' ?
                                     'active' : '';
                                 ?>">
-                <a class="nav-link pb-0" href="<?= base_url('HalamanPengelolaanAkun') ?>">
+                <a class="nav-link pb-0" href="<?= base_url('HalamanPengelolaanUser') ?>">
                     <i class="fas fa-fw fa-user-plus"></i>
                     <span>Pengelolaan User</span></a>
                 </a>

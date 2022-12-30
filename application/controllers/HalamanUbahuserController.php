@@ -54,7 +54,7 @@ class HalamanUbahuserController extends CI_Controller
             $query = $this->User->updateUser($id, $data);
             if ($query) {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Ubah User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-                redirect('HalamanPengelolaanAkun');
+                redirect('HalamanPengelolaanUser');
             } else {
                 $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal Ubah Cabang<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 

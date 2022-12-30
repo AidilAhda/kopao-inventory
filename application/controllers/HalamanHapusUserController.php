@@ -23,6 +23,6 @@ class HalamanHapusUserController extends CI_Controller
         if ($this->User->hapusUser($id)) {
             $this->session->set_flashdata('pesan', "<div class='alert alert-success' role='alert'>Berhasil Hapus User<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
         }
-        redirect('HalamanPengelolaanAkun');
+        redirect('HalamanPengelolaanUser');
     }
 }
