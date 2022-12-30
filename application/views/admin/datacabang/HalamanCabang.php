@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('HalamanEntriCabang') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="<?= base_url('HalamanEntriCabangController') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
@@ -40,8 +40,8 @@
                             <td><?= $c['nama_cabang']; ?></td>
                             <td><?= $c['alamat_cabang']; ?></td>
                             <td>
-                                <a href="<?= base_url('HalamanUbahCabang/edit/') . $c['id_cabang'] ?> " class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Sistem/hapusCabang/') . $c['id_cabang'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('HalamanUbahCabangController/edit/') . $c['id_cabang'] ?> " class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('HalamanHapusCabangController/hapusCabang/') . $c['id_cabang'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

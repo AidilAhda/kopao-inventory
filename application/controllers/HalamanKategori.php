@@ -18,7 +18,7 @@ class HalamanKategori extends CI_Controller
     public function index()
     {
         $data['title'] = 'Kategori';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
 
         $this->template->load('admin/HalamanDashboard', 'admin/kategori/HalamanKategori', $data);

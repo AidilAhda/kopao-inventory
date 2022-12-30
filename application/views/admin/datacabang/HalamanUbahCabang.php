@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/updateCabang/') . $cabang['id_cabang']   ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanUbahCabangController/updateCabang/') . $cabang['id_cabang']   ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="id_cabang">ID Cabang</label>
                         <div class="col-md-9">

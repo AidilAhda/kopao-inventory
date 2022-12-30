@@ -11,7 +11,7 @@ class HalamanBarangMasuk extends CI_Controller
 
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
-        $this->load->model('StokCabang', 'sc');
+        $this->load->model('BarangCabang', 'sc');
 
         //cek apakah belum login tapi sudah masuk melalui url
         is_logged_in();
@@ -21,10 +21,10 @@ class HalamanBarangMasuk extends CI_Controller
     public function index()
     {
         $data['title'] = 'Barang Masuk';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
-        $user_db = $this->User->cek($this->session->userdata('username'));
+        $user_db = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['barangmasuk'] = $this->sc->muatStokCabang($user_db['id_user']);
 
         $this->template->load('cabang/HalamanDashboard', 'cabang/barangmasuk/HalamanBarangMasuk', $data);

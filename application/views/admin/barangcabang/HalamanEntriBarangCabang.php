@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/simpanBarangCabang/' . $cabang['id_user']) ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanEntriBarangCabangController/simpanBarangCabang/' . $cabang['id_user']) ?>">
                     <input value="<?= set_value('id_user', $cabang['id_user']); ?>" name="id_user" id="id_user" type="hidden" class="form-control" placeholder="Nama Cabang...">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama_cabang">Nama Cabang</label>

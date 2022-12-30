@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,7 +55,9 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Dashboard' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link" href=" <?= base_url('HalamanDashboard/admin') ?>">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span></a>
@@ -79,8 +80,12 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="<?= base_url('halamankategori') ?>">Kategori</a>
-                        <a class="collapse-item" href="<?= base_url('HalamanBarang') ?>">Data Barang</a>
+                        <a class="collapse-item <?= $title == 'Kategori' ?
+                                                    'active' : '';
+                                                ?>" href="<?= base_url('HalamanKategori') ?>">Kategori</a>
+                        <a class="collapse-item <?= $title == 'Data Barang' ?
+                                                    'active' : '';
+                                                ?>" href="<?= base_url('HalamanBarang') ?>">Data Barang</a>
                     </div>
                 </div>
             </li>
@@ -95,20 +100,26 @@
                 Data Cabang & Pesanan
             </div>
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Data Cabang' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link pb-0" href="<?= base_url('halamancabang') ?>">
                     <i class=" fas fa-folder-open"></i>
                     <span>Data Cabang</span></a>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Barang Cabang' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link pb-0" href="<?= base_url('halamannamacabang/namaCabang') ?>">
                     <i class=" fas fa-database"></i>
                     <span>Barang Cabang</span></a>
                 </a>
             </li>
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Pesanan' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link " href="<?= base_url('HalamanNamaCabang') ?>">
                     <i class="fas fa-clipboard-check"></i>
                     <span>Konfirmasi Pesanan</span></a>
@@ -118,10 +129,13 @@
             <hr class="sidebar-divider">
 
 
-
             <!-- Heading -->
-
-            <li class="nav-item">
+            <div class="sidebar-heading">
+                LAPORAN
+            </div>
+            <li class="nav-item <?= $title == 'Laporan' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanNamaCabang/admin'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span><b>Laporan</b></span>
@@ -132,9 +146,11 @@
             <div class="sidebar-heading">
                 Settings
             </div>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link pb-0" href="<?= base_url('HalamanPengelolaanUser') ?>">
+            <!-- Nav Item - -->
+            <li class="nav-item <?= $title == 'Kelola User' ?
+                                    'active' : '';
+                                ?>">
+                <a class="nav-link pb-0" href="<?= base_url('HalamanPengelolaanAkun') ?>">
                     <i class="fas fa-fw fa-user-plus"></i>
                     <span>Pengelolaan User</span></a>
                 </a>
@@ -158,7 +174,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#D4A550 ;">
+                <nav class="navbar navbar-expand-sm navbar-light  topbar mb-4 static-top shadow" style="background-color:#D4A550 ;">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

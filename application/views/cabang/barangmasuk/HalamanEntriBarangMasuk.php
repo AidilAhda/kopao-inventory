@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/simpanBarangMasuk') ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanEntriBarangMasukController/simpanBarangMasuk') ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="id_barang_masuk">ID Barang Masuk</label>
                         <div class="col-md-9">
@@ -43,7 +43,7 @@
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="tanggal">Tanggal</label>
                         <div class="col-md-9">
-                            <input readonly value="<?= set_value('tanggal', date('Y-m-d')); ?>" name="tanggal" id="tanggal" type="text" class="form-control" placeholder="tanggal...">
+                            <input readonly value="<?= set_value('tanggal', date('Y-m-d')); ?>" name="tanggal" id="Tanggal" type="text" class="form-control" placeholder="tanggal...">
                             <?= form_error('tanggal', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="jumlah">jumlah</label>
+                        <label class="col-md-3 text-md-right" for="jumlah">Jumlah</label>
                         <div class="col-md-9">
                             <input value="<?= set_value('jumlah'); ?>" name="jumlah" id="jumlah" type="number" class="form-control" placeholder="Jumlah...">
                             <?= form_error('jumlah', '<small class="text-danger">', '</small>'); ?>

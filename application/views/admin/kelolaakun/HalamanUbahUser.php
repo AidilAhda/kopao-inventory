@@ -9,12 +9,12 @@
                         </h4>
                     </div>
                     <div class="col-auto">
-                        <a href="<?= base_url('HalamanPengelolaanUser') ?>" class="btn btn-sm btn-secondary btn-icon-split">
+                        <a href="<?= base_url('HalamanPengelolaanAkun') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/updateUser/') . $akun['id_user']   ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanUbahuserController/updateUser/') . $akun['id_user']   ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama">Nama</label>
                         <div class="col-md-9">
@@ -37,13 +37,7 @@
                             <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="email">email</label>
-                        <div class="col-md-9">
-                            <input value="<?= set_value('email', $akun['email']); ?>" name="email" id="email" type="text" class="form-control" placeholder="email ...">
-                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                        </div>
-                    </div>
+
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="no_telp">no telp</label>
                         <div class="col-md-9">

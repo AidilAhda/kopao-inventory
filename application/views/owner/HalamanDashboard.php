@@ -54,7 +54,9 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Dashboard' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link" href="<?= base_url('HalamanDashboard/owner') ?>">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span></a>
@@ -66,7 +68,9 @@
                 Laporan
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item <?= $title == 'Laporan' ?
+                                    'active' : '';
+                                ?>">
                 <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanNamaCabang/owner'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span><b>Laporan</b></span>

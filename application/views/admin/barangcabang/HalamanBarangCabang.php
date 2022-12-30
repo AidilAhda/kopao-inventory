@@ -1,6 +1,5 @@
 <?= $this->session->flashdata('pesan'); ?>
 <div class="card shadow-sm border-bottom-primary">
-
     <div class="card-header bg-white py-3">
         <div class="row">
             <div class="col">
@@ -13,7 +12,7 @@
 
             ?>
                 <div class="col-auto">
-                    <a href="<?= base_url('HalamanEntriBarangCabang/simpanCabang/') . $cabang['id_user'] ?>" class="btn btn-sm btn-primary btn-icon-split">
+                    <a href="<?= base_url('HalamanEntriBarangCabangController/simpanBarangCabang/') . $cabang['id_user'] ?>" class="btn btn-sm btn-primary btn-icon-split">
                         <span class="icon">
                             <i class="fa fa-plus"></i>
                         </span>

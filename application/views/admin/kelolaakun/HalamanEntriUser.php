@@ -9,7 +9,7 @@
                         </h4>
                     </div>
                     <div class="col-auto">
-                        <a href="<?= base_url('HalamanPengelolaanUser') ?>" class="btn btn-sm btn-secondary btn-icon-split">
+                        <a href="<?= base_url('HalamanPengelolaanAkun') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
                             </span>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body pb-2">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/simpanUser') ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanEntriUserController/simpanUser') ?>">
                     <div class="row form-group">
                         <label class="col-md-4 text-md-right" for="username">Username</label>
                         <div class="col-md-6">
@@ -46,17 +46,11 @@
                             <?= form_error('nama', '<span class="text-danger small">', '</span>'); ?>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-md-4 text-md-right" for="email">Email</label>
-                        <div class="col-md-6">
-                            <input value="<?= set_value('email'); ?>" type="text" id="email" name="email" class="form-control" placeholder="Email">
-                            <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
-                        </div>
-                    </div>
+
                     <div class="row form-group">
                         <label class="col-md-4 text-md-right" for="no_telp">Nomor Telepon</label>
                         <div class="col-md-6">
-                            <input value="<?= set_value('no_telp'); ?>" type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
+                            <input value="<?= set_value('no_telp'); ?>" type="number" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
                             <?= form_error('no_telp', '<span class="text-danger small">', '</span>'); ?>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ class HalamanProfile extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('user', 'User');
+        is_logged_in();
     }
     public function admin()
     {
