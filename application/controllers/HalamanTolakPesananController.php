@@ -36,7 +36,7 @@ class HalamanTolakPesananController extends CI_Controller
         } else {
             $this->session->set_flashdata('pesan', "<div class='alert alert-danger' role='alert'>Gagal ditolak<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 
-            redirect('HalamanKonfirHalamanKonfirmasiPesananControllermasiPesanan/pesananCabang/' . $idUser);
+            redirect('HalamanKonfirmasiPesananController/pesananCabang/' . $idUser);
         }
     }
 }

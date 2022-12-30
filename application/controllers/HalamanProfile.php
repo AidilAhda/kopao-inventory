@@ -14,8 +14,8 @@ class HalamanProfile extends CI_Controller
     {
         isAdmin();
         $data['title'] = 'Profile';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
-        $user_db = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
+        $user_db = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['profile'] = $this->User->muatUser($user_db['id_user']);
         $this->template->load('admin/HalamanDashboard', 'HalamanProfile', $data);
     }
@@ -23,8 +23,8 @@ class HalamanProfile extends CI_Controller
     {
         isCabang();
         $data['title'] = 'Profile';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
-        $user_db = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
+        $user_db = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['profile'] = $this->User->muatUser($user_db['id_user']);
         $this->template->load('cabang/HalamanDashboard', 'HalamanProfile', $data);
     }
@@ -32,8 +32,8 @@ class HalamanProfile extends CI_Controller
     {
         isOwner();
         $data['title'] = 'Profile';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
-        $user_db = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
+        $user_db = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['profile'] = $this->User->muatUser($user_db['id_user']);
         $this->template->load('owner/HalamanDashboard', 'HalamanProfile', $data);
     }
