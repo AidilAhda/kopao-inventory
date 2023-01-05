@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/tambahBarang') ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanEntriBarangController/tambahBarang') ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="id_barang">ID Barang</label>
                         <div class="col-md-9">

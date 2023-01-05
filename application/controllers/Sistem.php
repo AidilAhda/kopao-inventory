@@ -144,10 +144,9 @@ class Sistem extends CI_Controller
         ));
         $lastKode = $this->barang->idBarangTerbesar();
 
-        //mengambail 6 char dari belakang
-        $noUrut = (int) substr($lastKode, -6, 6);
-        $noUrut++;
-        $newKode = 'B' . sprintf("%06s", $noUrut);
+    //     ));
+    //     $this->form_validation->set_rules('satuan', 'Satuan', 'required', array(
+    //         'required' => 'Satuan tidak boleh kosong',
 
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['idBarang'] = $newKode;

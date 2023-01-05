@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class BarangCabang extends CI_Model
 {
 
-    public function muatSemuaBarangCabang($cabang)
+    public function muatStokCabang($cabang)
     {
         $this->db->join('kategori k', 'sc.kategori_id = k.id_kategori');
         $this->db->join('barang b', 'sc.barang_id = b.id_barang');

@@ -22,7 +22,7 @@
                             <div class="row no-gutters align-items-center bg-warning ">
                                 <div class="col mr-2 bg-warning w-15 p-3">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 d-flex flex-row">
-                                        <a href="<?= base_url('HalamanKonfirmasiPesanan/pesananCabang/') . $c['id_user'] ?> " style="text-decoration:none;color:black;font-size:18px;font-family:sans-serif">
+                                        <a href="<?= base_url('HalamanKonfirmasiPesananController/pesananCabang/') . $c['id_user'] ?> " style="text-decoration:none;color:black;font-size:18px;font-family:sans-serif">
                                             <img src="<?= base_url('assets/img/logo-kopao2.png') ?>" style="width: 93px;">
                                             <?= $no++ ?>.
                                             <?= $c['nama'] ?></a>

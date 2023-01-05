@@ -88,8 +88,8 @@
                             <td><?= $p['satuan']; ?></td>
                             <td><?= $p['status']; ?></td>
                             <td>
-                                <a href=" <?= base_url('Sistem/konfirmasiPesanan/') . $p['id_pesanan'] . '/' . $p['id_user'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fa fa-check"></i></a>
-                                <a href=" <?= base_url('Sistem/tolakPesanan/') . $p['id_pesanan'] . '/' . $p['id_user'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-times"></i></a>
+                                <a href=" <?= base_url('HalamanKonfirmasiPesananController/konfirmasiPesanan/') . $p['id_pesanan'] . '/' . $p['id_user'] ?>" class="btn btn-success btn-circle btn-sm"><i class="fa fa-check"></i></a>
+                                <a href=" <?= base_url('HalamanTolakPesananController/tolakPesanan/') . $p['id_pesanan'] . '/' . $p['id_user'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

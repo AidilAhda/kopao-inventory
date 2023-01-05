@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/updateKategori/') . $kategori['id_kategori']   ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanUbahKategoriController/updateKategori/') . $kategori['id_kategori']   ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama_kategori">Nama Kategori</label>
                         <div class="col-md-9">

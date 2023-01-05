@@ -3,9 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Model
 {
-
-
-
     public function cek($username, $pw)
     {
         $this->db->where('username', $username);

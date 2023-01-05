@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('pesan'); ?>
-                <form class="user" method="post" action="<?= base_url('Sistem/updateUser/') . $akun['id_user']   ?>">
+                <form class="user" method="post" action="<?= base_url('HalamanUbahuserController/updateUser/') . $akun['id_user']   ?>">
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="nama">Nama</label>
                         <div class="col-md-9">

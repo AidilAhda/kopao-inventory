@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="<?= base_url('HalamanEntriUser') ?>" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="<?= base_url('HalamanEntriUserController') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-user-plus"></i>
                     </span>
@@ -47,9 +47,9 @@
                             <td><?= $a['no_telp']; ?></td>
                             <td><?= $a['role_id']; ?></td>
                             <td>
-                                <a href="<?= base_url('Sistem/aktifkanUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm <?= $a['is_active'] ? 'btn-secondary' : 'btn-success' ?>" title="<?= $a['is_active'] ? 'Nonaktifkan User' : 'Aktifkan User' ?>"><i class="fa fa-fw fa-power-off"></i></a>
-                                <a href="<?= base_url('HalamanUbahUser/edit/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('Sistem/hapusUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
+                                <a href="<?= base_url('HalamanAktivasiUserController/aktifkanUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm <?= $a['is_active'] ? 'btn-secondary' : 'btn-success' ?>" title="<?= $a['is_active'] ? 'Nonaktifkan User' : 'Aktifkan User' ?>"><i class="fa fa-fw fa-power-off"></i></a>
+                                <a href="<?= base_url('HalamanUbahUserController/edit/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
+                                <a onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('HalamanHapusUserController/hapusUser/') . $a['id_user'] ?>" class="btn btn-circle btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach;

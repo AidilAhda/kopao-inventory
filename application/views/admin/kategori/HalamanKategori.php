@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="col-auto">
-                <a href="HalamanEntriKategori" class="btn btn-sm btn-primary btn-icon-split">
+                <a href="HalamanEntriKategoriController" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
@@ -38,8 +38,8 @@
                             <td><?= $no++; ?></td>
                             <td><?= $k['nama_kategori']; ?></td>
                             <td>
-                                <a href="<?= base_url('HalamanUbahKategori/edit/') . $k['id_kategori'] ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
-                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Sistem/hapusKategori/') . $k['id_kategori'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('HalamanUbahKategoriController/edit/') . $k['id_kategori'] ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                                <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('HalamanHapusKategoriController/hapusKategori/') . $k['id_kategori'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
