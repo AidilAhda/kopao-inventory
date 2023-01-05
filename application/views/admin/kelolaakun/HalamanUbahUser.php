@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -37,13 +37,7 @@
                             <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="email">email</label>
-                        <div class="col-md-9">
-                            <input value="<?= set_value('email', $akun['email']); ?>" name="email" id="email" type="text" class="form-control" placeholder="email ...">
-                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                        </div>
-                    </div>
+
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="no_telp">no telp</label>
                         <div class="col-md-9">

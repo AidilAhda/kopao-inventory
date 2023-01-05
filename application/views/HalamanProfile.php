@@ -27,13 +27,7 @@
                         <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
-                <div class="row form-group">
-                    <label class="col-md-3 text-md-right" for="email">Email</label>
-                    <div class="col-md-9">
-                        <input readonly value="<?= set_value('email', $profile['email']); ?>" name="email" id="email" type="text" class="form-control" placeholder="Nama Cabang...">
-                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                    </div>
-                </div>
+
                 <div class="row form-group">
                     <label class="col-md-3 text-md-right" for="no_telp">No Telp</label>
                     <div class="col-md-9">

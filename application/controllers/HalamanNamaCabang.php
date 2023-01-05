@@ -18,7 +18,7 @@ class HalamanNamaCabang extends CI_Controller
     {
         isAdmin();
         $data['title'] = 'Pesanan';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('admin/HalamanDashboard', 'admin/HalamanNamaCabang', $data);
     }
@@ -26,7 +26,7 @@ class HalamanNamaCabang extends CI_Controller
     {
         isAdmin();
         $data['title'] = 'Barang Cabang';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('admin/HalamanDashboard', 'admin/barangcabang/HalamanNamaCabang', $data);
     }
@@ -34,7 +34,7 @@ class HalamanNamaCabang extends CI_Controller
     {
         isAdmin();
         $data['title'] = 'Laporan';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('admin/HalamanDashboard', 'admin/laporan/HalamanNamaCabang', $data);
     }
@@ -42,7 +42,7 @@ class HalamanNamaCabang extends CI_Controller
     {
         isOwner();
         $data['title'] = 'Laporan';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->User->muatSemuaUser();
         $this->template->load('owner/HalamanDashboard', 'owner/laporan/HalamanNamaCabang', $data);
     }

@@ -10,7 +10,7 @@ class HalamanEntriBarangCabang extends CI_Controller
         $this->load->model('user', 'User');
         $this->load->model('Kategori', 'kategori');
         $this->load->model('Barang', 'barang');
-        $this->load->model('StokCabang', 'sc');
+        $this->load->model('BarangCabang', 'sc');
 
 
         //cek apakah belum login tapi sudah masuk melalui url
@@ -22,7 +22,7 @@ class HalamanEntriBarangCabang extends CI_Controller
     {
         $id = encode_php_tags($getId);
         $data['title'] = 'Barang Cabang';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
 
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();

@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -39,11 +39,11 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label class="col-md-3 text-md-right" for="id_kategori">Jenis Barang</label>
+                        <label class="col-md-3 text-md-right" for="id_kategori">Kategori Barang</label>
                         <div class="col-md-9">
                             <div class="input-group">
                                 <select name="id_kategori" id="id_kategori" class="custom-select">
-                                    <option value="" selected disabled>Pilih Jenis Barang</option>
+                                    <option value="" selected disabled>Pilih Kategori Barang</option>
                                     <?php foreach ($kategori as $k) : ?>
                                         <option <?= set_select('id_kategori', $k['id_kategori']) ?> value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
                                     <?php endforeach; ?>

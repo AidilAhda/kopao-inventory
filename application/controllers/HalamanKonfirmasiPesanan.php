@@ -23,7 +23,7 @@ class HalamanKonfirmasiPesanan extends CI_Controller
     {
         $cabang = encode_php_tags($id);
         $data['title'] = 'Pesanan';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['pesanan'] = $this->pesanan->muatPesanan(true, $cabang);
         $data['cabang'] = $this->cabang->muatUser($cabang);
         $this->template->load('admin/HalamanDashboard', 'admin/pesanan/HalamanKonfirmasiPesanan', $data);

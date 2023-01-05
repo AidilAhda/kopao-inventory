@@ -20,7 +20,7 @@ class HalamanUbahuser extends CI_Controller
     {
         $id = encode_php_tags($getId);
         $data['title'] = "Kelola User";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['akun'] = $this->User->muatUser($id);
         $this->template->load('admin/HalamanDashboard', 'admin/kelolaakun/HalamanUbahUser', $data);
     }

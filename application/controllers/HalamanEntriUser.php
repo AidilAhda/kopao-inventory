@@ -18,7 +18,7 @@ class HalamanEntriUser extends CI_Controller
     public function index()
     {
         $data['title'] = 'Kelola User';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $this->template->load('admin/HalamanDashboard', 'admin/kelolaakun/HalamanEntriUser', $data);
     }
 }

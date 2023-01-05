@@ -20,7 +20,7 @@ class HalamanUbahKategori extends CI_Controller
     {
         $id = encode_php_tags($getId);
         $data['title'] = "Kategori";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['kategori'] = $this->kategori->muatKategori($id);
         $this->template->load('admin/HalamanDashboard', 'admin/kategori/HalamanUbahKategori', $data);
     }

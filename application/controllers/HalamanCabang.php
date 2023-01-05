@@ -18,7 +18,7 @@ class HalamanCabang extends CI_Controller
     public function index()
     {
         $data['title'] = 'Data Cabang';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->cabang->muatSemuaCabang();
         $this->template->load('admin/HalamanDashboard', 'admin/datacabang/HalamanCabang', $data);
     }

@@ -20,7 +20,7 @@ class HalamanEntriBarangKeluar extends CI_Controller
     public function index()
     {
         $data['title'] = 'Barang Keluar';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
 
         $today = date('ymd');
         $prefix = 'BK' . $today;

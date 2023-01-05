@@ -20,7 +20,7 @@
                         <i class="fa fa-arrow-left"></i>
                     </span>
                     <span class="text">
-                        Back
+                        Kembali
                     </span>
                 </a>
 

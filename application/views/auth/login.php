@@ -23,7 +23,7 @@
                                         <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control form-control-user" placeholder="password">
+                                        <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
                                         <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">

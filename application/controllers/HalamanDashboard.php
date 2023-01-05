@@ -16,7 +16,7 @@ class HalamanDashboard extends CI_Controller
     {
         isAdmin();
         $data['title'] = "Dashboard";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $this->template->load('admin/HalamanDashboard', 'dashboard', $data);
     }
 
@@ -24,14 +24,14 @@ class HalamanDashboard extends CI_Controller
     {
         isCabang();
         $data['title'] = "Dashboard";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $this->template->load('cabang/HalamanDashboard', 'dashboard', $data);
     }
     public function owner()
     {
         isOwner();
         $data['title'] = "Dashboard";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $this->template->load('owner/HalamanDashboard', 'dashboard', $data);
     }
     public function blok()

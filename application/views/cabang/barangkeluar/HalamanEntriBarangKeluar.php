@@ -14,7 +14,7 @@
                                 <i class="fa fa-arrow-left"></i>
                             </span>
                             <span class="text">
-                                Back
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="row form-group">
                         <label class="col-md-3 text-md-right" for="tanggal">Tanggal</label>
                         <div class="col-md-9">
-                            <input readonly value="<?= set_value('tanggal', date('Y-m-d')); ?>" name="tanggal" id="tanggal" type="text" class="form-control" placeholder="tanggal...">
+                            <input readonly value="<?= set_value('tanggal', date('Y-m-d')); ?>" name="tanggal" id="Tanggal" type="text" class="form-control" placeholder="tanggal...">
                             <?= form_error('tanggal', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
@@ -100,6 +100,13 @@
 
                             </div>
                             <?= form_error('satuan', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 text-md-right" for="keterangan">Keterangan</label>
+                        <div class="col-md-9">
+                            <textarea value="<?= set_value('keterangan'); ?>" name="keterangan" id="keterangan" type="text" class="form-control" placeholder="Rusak/Hilang/Kadaluarsa"></textarea>
+                            <?= form_error('keterangan', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="row form-group">

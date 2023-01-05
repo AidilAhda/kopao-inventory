@@ -21,11 +21,11 @@ class HalamanPesanan extends CI_Controller
     public function index()
     {
         $data['title'] = 'Pesanan';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
 
-        $user_db = $this->User->cek($this->session->userdata('username'));
+        $user_db = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['pesanan'] = $this->pesanan->muatPesanan(false, $user_db['id_user']);
         $this->template->load('cabang/HalamanDashboard', 'cabang/pesanan/HalamanPesanan', $data);
     }

@@ -20,7 +20,7 @@ class HalamanUbahCabang extends CI_Controller
 
         $id = encode_php_tags($getId);
         $data['title'] = "Data Cabang";
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['cabang'] = $this->cabang->muatCabang($id);
         $this->template->load('admin/HalamanDashboard', 'admin/datacabang/HalamanUbahCabang', $data);
     }

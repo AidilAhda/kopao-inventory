@@ -59,7 +59,9 @@
                 <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
+                <li class="nav-item <?= $title == 'Dashboard' ?
+                                        'active' : '';
+                                    ?>">
                     <a class="nav-link" href="<?= base_url('HalamanDashboard/cabang') ?>">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span></a>
@@ -73,23 +75,42 @@
                     Transaction
                 </div>
                 <!-- Nav Item - Charts -->
-                <li class="nav-item">
+                <li class="nav-item <?= $title == 'Pesanan' ?
+                                        'active' : '';
+                                    ?>">
                     <a class="nav-link pb-0" href="<?= base_url('HalamanPesanan') ?>">
                         <i class="fas fa-cart-plus"></i>
                         <span>Pesan Barang</span></a>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= $title == 'Barang Masuk' ?
+                                        'active' : '';
+                                    ?>">
                     <a class="nav-link pb-0" href="<?= base_url('HalamanBarangMasuk') ?>">
                         <i class="fas fa-fw fa-download"></i>
                         <span>Barang Masuk</span></a>
                     </a>
                 </li>
                 <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link pb-0" href="<?= base_url('HalamanBarangKeluar') ?>">
+                <li class="nav-item <?= $title == 'Barang Keluar' ?
+                                        'active' : '';
+                                    ?>">
+                    <a class="nav-link " href="<?= base_url('HalamanBarangKeluar') ?>">
                         <i class=" fas fa-fw fa-upload"></i>
                         <span>Barang Keluar</span></a>
+                    </a>
+                </li>
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    Laporan
+                </div>
+                <li class="nav-item <?= $title == 'Laporan' ?
+                                        'active' : '';
+                                    ?>">
+                    <a class="nav-link pb-0 pt-0" href="<?= base_url('HalamanLaporan/cabang'); ?>">
+                        <i class="fas fa-fw fa-print"></i>
+                        <span><b>Laporan</b></span>
                     </a>
                 </li>
 
@@ -203,7 +224,9 @@
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
-
+            <!-- Datepicker -->
+            <script src="<?= base_url('assets/') ?>vendor/daterangepicker/moment.min.js"></script>
+            <script src="<?= base_url('assets/') ?>vendor/daterangepicker/daterangepicker.min.js"></script>
 
             <!-- Page level plugins -->
             <script src="<?= base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -221,7 +244,72 @@
 
             <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
 
+                       <script type="text/javascript">
+                        $(function() {
+                            $('date').datepicker({
+                                uiLibrary: 'bootstrap4',
+                                format: 'yyyy-mm-dd'
+                            });
 
+                            var start = moment().subtract(29, 'days');
+                            var end = moment();
+
+                            function cb(start, end) {
+                                $('#tanggal').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+                            }
+
+                            $('#tanggal').daterangepicker({
+                                startDate: start,
+                                endDate: end,
+                                ranges: {
+                                    'Hari ini': [moment(), moment()],
+                                    'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                    '7 hari terakhir': [moment().subtract(6, 'days'), moment()],
+                                    '30 hari terakhir': [moment().subtract(29, 'days'), moment()],
+                                    'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+                                    'Bulan lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                                    'Tahun ini': [moment().startOf('year'), moment().endOf('year')],
+                                    'Tahun lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+                                }
+                            }, cb);
+
+                            cb(start, end);
+                        });
+                    </script>
+
+                    <script type="text/javascript">
+                        $(function() {
+                            $('date').datepicker({
+                                uiLibrary: 'bootstrap4',
+                                format: 'yyyy-mm-dd'
+                            });
+
+                            var start = moment().subtract(29, 'days');
+                            var end = moment();
+
+                            function dp(start, end) {
+                                $('#tgl_pesanan').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+                            }
+
+                            $('#tgl_pesanan').daterangepicker({
+                                startDate: start,
+                                endDate: end,
+                                ranges: {
+                                    'Hari ini': [moment(), moment()],
+                                    'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                    '7 hari terakhir': [moment().subtract(6, 'days'), moment()],
+                                    '30 hari terakhir': [moment().subtract(29, 'days'), moment()],
+                                    'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+                                    'Bulan lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                                    'Tahun ini': [moment().startOf('year'), moment().endOf('year')],
+                                    'Tahun lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+
+                                }
+                            }, dp);
+
+                            dp(start, end);
+                        });
+                    </script>
 
             <script type="text/javascript">
                 $(document).ready(function() {

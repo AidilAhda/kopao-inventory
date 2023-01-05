@@ -28,7 +28,6 @@
 
                     <th>Nama</th>
                     <th>Username</th>
-                    <th>Email</th>
                     <th>No. telp</th>
                     <th>Role</th>
                     <th>Aksi</th>
@@ -45,7 +44,6 @@
 
                             <td><?= $a['nama']; ?></td>
                             <td><?= $a['username']; ?></td>
-                            <td><?= $a['email']; ?></td>
                             <td><?= $a['no_telp']; ?></td>
                             <td><?= $a['role_id']; ?></td>
                             <td>

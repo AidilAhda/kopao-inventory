@@ -19,7 +19,7 @@ class HalamanBarang extends CI_Controller
     public function index()
     {
         $data['title'] = 'Data Barang';
-        $data['user'] = $this->User->cek($this->session->userdata('username'));
+        $data['user'] = $this->User->cek($this->session->userdata('username'), $this->session->userdata('password'));
         $data['kategori'] = $this->kategori->muatSemuaKategori();
         $data['barang'] = $this->barang->muatSemuaBarang();
 
